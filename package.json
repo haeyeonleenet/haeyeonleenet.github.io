@@ -1,0 +1,17 @@
+{
+  "name": "antigravity-test-imitate-website",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node scripts/build-content.js && node scripts/minify-assets.js && node scripts/generate-static.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "esbuild": "^0.27.2"
+  }
+}

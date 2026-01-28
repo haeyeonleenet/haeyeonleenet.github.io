@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule | Haeyeon Lee</title>
+    <meta name="description" content="Official website of Soprano Haeyeon Lee. Biography, Schedule, and Media.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.min.css">
+    <!-- Base tag to handle relative links if we were using subdirectories, but we are using flat files -->
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-container">
+            <a href="/" class="site-title" data-link>HAEYEON LEE</a>
+            <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="site-nav">
+                <a href="/about.html" data-link>About</a>
+                <a href="/media.html" data-link>Media</a>
+                <a href="/schedule.html" data-link>Schedule</a>
+                <a href="/contact.html" data-link>Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="app" class="site-content">
+        
+    <section class="content-section fade-in">
+        <h2>Schedule</h2>
+        <ul class="schedule-list">
+            
+            <li class="schedule-item">
+                <span class="date">OCT 2026</span>
+                <span class="event">Recital at Arts Center</span>
+                <span class="location">Seoul, Korea</span>
+            </li>
+
+            <li class="schedule-item">
+                <span class="date">DEC 2026</span>
+                <span class="event">Winter Gala Concert</span>
+                <span class="location">New York, USA</span>
+            </li>
+
+            <li class="schedule-item">
+                <span class="date">JAN 2027</span>
+                <span class="event">Opera Debut: "La Bohème"</span>
+                <span class="location">London, UK</span>
+            </li>
+        </ul>
+    </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>&copy; <span id="year">2026</span> Haeyeon Lee. All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="#" target="_blank" aria-label="Instagram">Instagram</a>
+                <a href="#" target="_blank" aria-label="SoundCloud">SoundCloud</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/bundle.min.js"></script>
+    <script>
+        // SEO Helper: If JS loads, it might take over, but for Robots, this static content is visible.
+        // We update links to point to .html files for non-JS users/robots, 
+        // but our Router intercepts data-link clicks to use pushState.
+        // To be safe, we can leave .html extensions in the hrefs above, 
+        // and Router can strip them if needed, or just handle them.
+    </script>
+</body>
+</html>
