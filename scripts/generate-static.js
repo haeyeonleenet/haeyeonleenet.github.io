@@ -8,16 +8,54 @@ const viewsPath = path.join(__dirname, '../js/views.js');
 const viewsContent = fs.readFileSync(viewsPath, 'utf8');
 
 const extractView = (name) => {
-    const regex = new RegExp(`export const ${name} = \\(\\) => \`([\\s\\S]*?)\`;`);
+    // Regex matches: export const name = (...) => `...`;
+    // We capture the content inside the backticks.
+    // Updated to support arguments in function signature e.g. (activeTab = 'photos')
+    // Updated to stop at the closing backtick, ignoring any chained methods like .replace()
+    const regex = new RegExp(`export const ${name} = \\(.*?\\) => \`([\\s\\S]*?)\``);
     const match = viewsContent.match(regex);
-    return match ? match[1] : '';
+    let content = match ? match[1] : '';
+    // Robustness fix: If regex overshot and captured the closing backtick (and subsequent code),
+    // truncate at the first backtick.
+    if (content.includes('`')) {
+        content = content.split('`')[0];
+    }
+    return content;
 };
+
+// We need to support passing arguments to the template for mediaView
+// So we extract the function body string, but we also need to know how to "render" it with args if it was a real function.
+// Since we are doing regex extraction of the template string, we are bypassing the function execution.
+// BUT, my previous build-content.js change actually injects the logic INTO the template string using .replace().
+// So the extracted string ALREADY contains the logic to handle activeTab if I extracted the whole thing.
+// However, extractView above only captures content INSIDE the backticks of the first template literal. 
+// My build-content.js change was: export const mediaView = (activeTab = 'photos') => `...`.replace(...)
+// So the regex above will capture the `...` inside backticks, but MISS the .replace(...) chain at the end.
+// This means the static generation will get the RAW template without the active class logic applied.
+
+// Strategy: For static generation, we might want to just manually replace the active classes in the raw template 
+// based on what page we are generating, similarly to how the build-script does it, 
+// OR we can rely on the fact that we are generating distinct files.
 
 const homeContent = extractView('homeView');
 const aboutContent = extractView('aboutView');
-const mediaContent = extractView('mediaView');
 const scheduleContent = extractView('scheduleView');
 const contactContent = extractView('contactView');
+const mediaRawContent = extractView('mediaView'); // This gives us the raw HTML inside backticks
+
+// Helper to apply active state to media content for static generation
+const processMediaContent = (content, activeTab) => {
+    const photosActive = activeTab === 'photos' ? 'active' : '';
+    const videoActive = activeTab === 'video' ? 'active' : '';
+    const photosDisplay = activeTab === 'photos' ? 'block' : 'none';
+    const videoDisplay = activeTab === 'video' ? 'block' : 'none';
+
+    return content
+        .replace(/id="photos" class="tab-pane.*?" style="display:.*?"/, `id="photos" class="tab-pane ${photosActive}" style="display:${photosDisplay};"`)
+        .replace(/id="video" class="tab-pane.*?" style="display:.*?"/, `id="video" class="tab-pane ${videoActive}" style="display:${videoDisplay};"`)
+        .replace(/href="\/media\/photos" class="tab-btn.*?"/, `href="/media/photos" class="tab-btn ${photosActive}"`)
+        .replace(/href="\/media\/videos" class="tab-btn.*?"/, `href="/media/videos" class="tab-btn ${videoActive}"`);
+};
 
 const template = (title, content, path) => `<!DOCTYPE html>
 <html lang="en">
@@ -33,8 +71,7 @@ const template = (title, content, path) => `<!DOCTYPE html>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Lato:wght@300;400&display=swap" rel="stylesheet">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="css/style.min.css">
-    <!-- Base tag to handle relative links if we were using subdirectories, but we are using flat files -->
+    <link rel="stylesheet" href="/css/style.min.css">
 </head>
 <body>
     <header class="site-header">
@@ -68,31 +105,33 @@ const template = (title, content, path) => `<!DOCTYPE html>
         </div>
     </footer>
 
-    <script src="js/bundle.min.js"></script>
+    <script src="/js/bundle.min.js"></script>
     <script>
-        // SEO Helper: If JS loads, it might take over, but for Robots, this static content is visible.
-        // We update links to point to .html files for non-JS users/robots, 
-        // but our Router intercepts data-link clicks to use pushState.
-        // To be safe, we can leave .html extensions in the hrefs above, 
-        // and Router can strip them if needed, or just handle them.
+        // SEO Helper
     </script>
 </body>
 </html>`;
 
 const pages = [
     { file: 'about.html', title: 'About | Haeyeon Lee', content: aboutContent },
-    { file: 'media.html', title: 'Media | Haeyeon Lee', content: mediaContent },
     { file: 'schedule.html', title: 'Schedule | Haeyeon Lee', content: scheduleContent },
     { file: 'contact.html', title: 'Contact | Haeyeon Lee', content: contactContent },
-    // Home is index.html, already exists but let's make sure it has content if we want it static too
-    // But index.html defines the shell. We should inject home content into it if we want it fully static.
+
+    // Media Sub-pages
+    { file: 'media/photos/index.html', title: 'Media (Photos) | Haeyeon Lee', content: processMediaContent(mediaRawContent, 'photos') },
+    { file: 'media/videos/index.html', title: 'Media (Videos) | Haeyeon Lee', content: processMediaContent(mediaRawContent, 'video') },
+    // Redirect /media to photos (using same content as photos)
+    { file: 'media/index.html', title: 'Media | Haeyeon Lee', content: processMediaContent(mediaRawContent, 'photos') },
 ];
 
-// Read index.html to serve as base if we want exact match, otherwise use template
-// Actually, let's just generate these specific files.
 pages.forEach(page => {
-    fs.writeFileSync(path.join(__dirname, '../' + page.file), template(page.title, page.content));
-    console.log(`Generated ${page.file} in root`);
+    const filePath = path.join(__dirname, '../' + page.file);
+    const dir = path.dirname(filePath);
+    if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+    }
+    fs.writeFileSync(filePath, template(page.title, page.content));
+    console.log(`Generated ${page.file}`);
 });
 
 // Update index.html to have static home content? 

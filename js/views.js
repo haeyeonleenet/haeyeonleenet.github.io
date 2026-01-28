@@ -111,15 +111,15 @@ export const aboutView = () => `
     </section>
 `;
 
-export const mediaView = () => `
+export const mediaView = (activeTab = 'photos') => `
     <section class="content-section fade-in">
         <h2>Media</h2>
         <div class="media-tabs">
-            <button class="tab-btn active" data-tab="photos">Photos</button>
-            <button class="tab-btn" data-tab="video">Video</button>
+            <a href="/media/photos" class="tab-btn active" data-link>Photos</a>
+            <a href="/media/videos" class="tab-btn " data-link>Video</a>
         </div>
         <div class="media-content">
-            <div id="photos" class="tab-pane active">
+            <div id="photos" class="tab-pane active" style="display:block;">
                 <div class="media-grid">
                     <img src="assets/images/EYR00610.JPG" alt="Gallery Image" loading="lazy">
                     <img src="assets/images/EYR00658.JPG" alt="Gallery Image" loading="lazy">
@@ -127,7 +127,7 @@ export const mediaView = () => `
                     <img src="assets/images/EYR01028.JPG" alt="Gallery Image" loading="lazy">
                 </div>
             </div>
-            <div id="video" class="tab-pane" style="display:none;">
+            <div id="video" class="tab-pane " style="display:none;">
                 <div class="video-grid">
                     
                     <div class="video-card">
@@ -181,7 +181,7 @@ export const mediaView = () => `
             </div>
         </div>
     </section>
-`;
+`.replace(/id="photos" class="tab-pane.*?" style="display:.*?"/, `id="photos" class="tab-pane ${activeTab === 'photos' ? 'active' : ''}" style="display:${activeTab === 'photos' ? 'block' : 'none'};"`).replace(/id="video" class="tab-pane.*?" style="display:.*?"/, `id="video" class="tab-pane ${activeTab === 'video' ? 'active' : ''}" style="display:${activeTab === 'video' ? 'block' : 'none'};"`).replace(/href="\/media\/photos" class="tab-btn.*?"/, `href="/media/photos" class="tab-btn ${activeTab === 'photos' ? 'active' : ''}"`).replace(/href="\/media\/videos" class="tab-btn.*?"/, `href="/media/videos" class="tab-btn ${activeTab === 'video' ? 'active' : ''}"`);
 
 export const scheduleView = () => `
     <section class="content-section fade-in">

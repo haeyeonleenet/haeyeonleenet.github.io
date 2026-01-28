@@ -88,7 +88,12 @@ async function getVideos() {
     return videos;
 }
 
-function generateMediaView(images, videos) {
+function generateMediaView(images, videos, activeTab = 'photos') {
+    const photosActive = activeTab === 'photos' ? 'active' : '';
+    const videoActive = activeTab === 'video' ? 'active' : '';
+    const photosDisplay = activeTab === 'photos' ? 'block' : 'none';
+    const videoDisplay = activeTab === 'video' ? 'block' : 'none';
+
     const photosHtml = images.map(img =>
         `<img src="${img}" alt="Gallery Image" loading="lazy">`
     ).join('\n                    ');
@@ -110,16 +115,16 @@ function generateMediaView(images, videos) {
     <section class="content-section fade-in">
         <h2>Media</h2>
         <div class="media-tabs">
-            <button class="tab-btn active" data-tab="photos">Photos</button>
-            <button class="tab-btn" data-tab="video">Video</button>
+            <a href="/media/photos" class="tab-btn ${photosActive}" data-link>Photos</a>
+            <a href="/media/videos" class="tab-btn ${videoActive}" data-link>Video</a>
         </div>
         <div class="media-content">
-            <div id="photos" class="tab-pane active">
+            <div id="photos" class="tab-pane ${photosActive}" style="display:${photosDisplay};">
                 <div class="media-grid">
                     ${photosHtml}
                 </div>
             </div>
-            <div id="video" class="tab-pane" style="display:none;">
+            <div id="video" class="tab-pane ${videoActive}" style="display:${videoDisplay};">
                 <div class="video-grid">
                     ${videosHtml}
                 </div>
@@ -289,7 +294,7 @@ async function main() {
     // Replace mediaView
     const mediaRegex = /export const mediaView = \(\) => `[\s\S]*?`;/;
     if (mediaRegex.test(viewsContent)) {
-        viewsContent = viewsContent.replace(mediaRegex, `export const mediaView = () => \`${newMediaHTML}\`;`);
+        viewsContent = viewsContent.replace(mediaRegex, `export const mediaView = (activeTab = 'photos') => \`${newMediaHTML}\`.replace(/id="photos" class="tab-pane.*?" style="display:.*?"/, \`id="photos" class="tab-pane \${activeTab === 'photos' ? 'active' : ''}" style="display:\${activeTab === 'photos' ? 'block' : 'none'};"\`).replace(/id="video" class="tab-pane.*?" style="display:.*?"/, \`id="video" class="tab-pane \${activeTab === 'video' ? 'active' : ''}" style="display:\${activeTab === 'video' ? 'block' : 'none'};"\`).replace(/href="\\/media\\/photos" class="tab-btn.*?"/, \`href="/media/photos" class="tab-btn \${activeTab === 'photos' ? 'active' : ''}"\`).replace(/href="\\/media\\/videos" class="tab-btn.*?"/, \`href="/media/videos" class="tab-btn \${activeTab === 'video' ? 'active' : ''}"\`);`);
     } else {
         console.error('Could not find mediaView');
     }

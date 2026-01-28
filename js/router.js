@@ -35,31 +35,11 @@ export default class Router {
         });
 
         // Intercept all clicks on data-link
+        // Intercept all clicks on data-link
         document.body.addEventListener('click', e => {
             if (e.target.matches('[data-link]')) {
                 e.preventDefault();
                 this.navigateTo(e.target.href);
-            }
-
-            // Handle Tab Switching
-            if (e.target.matches('.tab-btn')) {
-                const targetTabId = e.target.getAttribute('data-tab');
-                const container = e.target.closest('.content-section');
-
-                // Update Buttons
-                container.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-                e.target.classList.add('active');
-
-                // Update Content
-                container.querySelectorAll('.tab-pane').forEach(pane => {
-                    if (pane.id === targetTabId) {
-                        pane.style.display = 'block';
-                        pane.classList.add('active');
-                    } else {
-                        pane.style.display = 'none';
-                        pane.classList.remove('active');
-                    }
-                });
             }
         });
     }
@@ -71,20 +51,38 @@ export default class Router {
     }
 
     async handleRoute(path) {
-        // Simple normalization for Github Pages without configuration (optional hack later)
-        // For now, exact match
+        // Handle Media Redirects and Sub-routes
+        if (path === '/media' || path === '/media/') {
+            this.navigateTo('/media/photos');
+            return;
+        }
 
-        // Handle dynamic base or trailing slashes if needed.
-        // Assuming clean paths for now.
+        let viewFunction;
+        let args = [];
 
-        const viewFunction = this.routes[path] || this.routes['/'];
-        this.app.innerHTML = viewFunction();
+        if (path === '/media/photos') {
+            viewFunction = this.routes['/media'];
+            args = ['photos'];
+        } else if (path === '/media/videos') {
+            viewFunction = this.routes['/media'];
+            args = ['video'];
+        } else {
+            viewFunction = this.routes[path] || this.routes['/'];
+        }
+
+        // If route not found (and not handled above), fallback to home or 404 (using home for now)
+        if (!viewFunction && !this.routes[path]) {
+            viewFunction = this.routes['/'];
+        }
+
+        this.app.innerHTML = viewFunction(...args);
 
         // Update Meta Title
         const titleMap = {
             '/': 'Haeyeon Lee | Soprano',
             '/about': 'About | Haeyeon Lee',
-            '/media': 'Media | Haeyeon Lee',
+            '/media/photos': 'Media (Photos) | Haeyeon Lee',
+            '/media/videos': 'Media (Videos) | Haeyeon Lee',
             '/schedule': 'Schedule | Haeyeon Lee',
             '/contact': 'Contact | Haeyeon Lee'
         };
@@ -95,7 +93,8 @@ export default class Router {
 
     updateActiveLink(path) {
         document.querySelectorAll('.site-nav a').forEach(link => {
-            if (link.getAttribute('href') === path) {
+            const href = link.getAttribute('href');
+            if (href === path || (href === '/media' && path.startsWith('/media/'))) {
                 link.classList.add('active');
             } else {
                 link.classList.remove('active');

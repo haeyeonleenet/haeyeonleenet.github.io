@@ -12,8 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Lato:wght@300;400&display=swap" rel="stylesheet">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="css/style.min.css">
-    <!-- Base tag to handle relative links if we were using subdirectories, but we are using flat files -->
+    <link rel="stylesheet" href="/css/style.min.css">
 </head>
 <body>
     <header class="site-header">
@@ -71,13 +70,9 @@
         </div>
     </footer>
 
-    <script src="js/bundle.min.js"></script>
+    <script src="/js/bundle.min.js"></script>
     <script>
-        // SEO Helper: If JS loads, it might take over, but for Robots, this static content is visible.
-        // We update links to point to .html files for non-JS users/robots, 
-        // but our Router intercepts data-link clicks to use pushState.
-        // To be safe, we can leave .html extensions in the hrefs above, 
-        // and Router can strip them if needed, or just handle them.
+        // SEO Helper
     </script>
 </body>
 </html>

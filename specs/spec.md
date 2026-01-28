@@ -30,10 +30,10 @@
         - **Bio**: Narrative biography. Paragraphs must have `1.8em` spacing for readability.
         - **CV**: Professional curriculum vitae. List items must have `1.8em` spacing.
 
-3.  **Media (`/media`)**
-    - **Photos**: Dynamic Grid layout generated from `assets/images`.
+3.  **Media (`/media` -> redirects to `/media/photos`)**
+    - **Photos (`/media/photos`)**: Dynamic Grid layout generated from `assets/images`.
         - **Format**: Portrait aspect ratio (`3/4`) with `object-position: top` to ensure faces remain visible.
-    - **Video**: Dynamic Card layout generated from `data/videos.md`.
+    - **Video (`/media/videos`)**: Dynamic Card layout generated from `data/videos.md`.
         - **Format**: Responsive Video Cards (16:9 <iframe> embed).
         - **Source**: YouTube URLs via OEmbed.
 
