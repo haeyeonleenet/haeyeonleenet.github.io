@@ -110,7 +110,6 @@ export const aboutView = () => `
 
     </section>
 `;
-
 export const mediaView = (activeTab = 'photos') => `
     <section class="content-section fade-in">
         <h2>Media</h2>
@@ -121,10 +120,10 @@ export const mediaView = (activeTab = 'photos') => `
         <div class="media-content">
             <div id="photos" class="tab-pane active" style="display:block;">
                 <div class="media-grid">
-                    <img src="assets/images/EYR00610.JPG" alt="Gallery Image" loading="lazy">
-                    <img src="assets/images/EYR00658.JPG" alt="Gallery Image" loading="lazy">
-                    <img src="assets/images/EYR00821.JPG" alt="Gallery Image" loading="lazy">
-                    <img src="assets/images/EYR01028.JPG" alt="Gallery Image" loading="lazy">
+                    <img src="/assets/images/EYR00610.JPG" alt="Gallery Image" loading="lazy">
+                    <img src="/assets/images/EYR00658.JPG" alt="Gallery Image" loading="lazy">
+                    <img src="/assets/images/EYR00821.JPG" alt="Gallery Image" loading="lazy">
+                    <img src="/assets/images/EYR01028.JPG" alt="Gallery Image" loading="lazy">
                 </div>
             </div>
             <div id="video" class="tab-pane " style="display:none;">
@@ -182,7 +181,6 @@ export const mediaView = (activeTab = 'photos') => `
         </div>
     </section>
 `.replace(/id="photos" class="tab-pane.*?" style="display:.*?"/, `id="photos" class="tab-pane ${activeTab === 'photos' ? 'active' : ''}" style="display:${activeTab === 'photos' ? 'block' : 'none'};"`).replace(/id="video" class="tab-pane.*?" style="display:.*?"/, `id="video" class="tab-pane ${activeTab === 'video' ? 'active' : ''}" style="display:${activeTab === 'video' ? 'block' : 'none'};"`).replace(/href="\/media\/photos" class="tab-btn.*?"/, `href="/media/photos" class="tab-btn ${activeTab === 'photos' ? 'active' : ''}"`).replace(/href="\/media\/videos" class="tab-btn.*?"/, `href="/media/videos" class="tab-btn ${activeTab === 'video' ? 'active' : ''}"`);
-
 export const scheduleView = () => `
     <section class="content-section fade-in">
         <h2>Schedule</h2>
@@ -208,7 +206,6 @@ export const scheduleView = () => `
         </ul>
     </section>
 `;
-
 export const contactView = () => `
     <section class="content-section fade-in">
         <h2>Contact</h2>

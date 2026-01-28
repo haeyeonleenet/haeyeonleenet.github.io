@@ -292,7 +292,7 @@ async function main() {
     let viewsContent = fs.readFileSync(VIEWS_FILE, 'utf8');
 
     // Replace mediaView
-    const mediaRegex = /export const mediaView = \(\) => `[\s\S]*?`;/;
+    const mediaRegex = /export const mediaView = [\s\S]*?(?=\nexport const|$)/;
     if (mediaRegex.test(viewsContent)) {
         viewsContent = viewsContent.replace(mediaRegex, `export const mediaView = (activeTab = 'photos') => \`${newMediaHTML}\`.replace(/id="photos" class="tab-pane.*?" style="display:.*?"/, \`id="photos" class="tab-pane \${activeTab === 'photos' ? 'active' : ''}" style="display:\${activeTab === 'photos' ? 'block' : 'none'};"\`).replace(/id="video" class="tab-pane.*?" style="display:.*?"/, \`id="video" class="tab-pane \${activeTab === 'video' ? 'active' : ''}" style="display:\${activeTab === 'video' ? 'block' : 'none'};"\`).replace(/href="\\/media\\/photos" class="tab-btn.*?"/, \`href="/media/photos" class="tab-btn \${activeTab === 'photos' ? 'active' : ''}"\`).replace(/href="\\/media\\/videos" class="tab-btn.*?"/, \`href="/media/videos" class="tab-btn \${activeTab === 'video' ? 'active' : ''}"\`);`);
     } else {
@@ -300,7 +300,7 @@ async function main() {
     }
 
     // Replace scheduleView
-    const scheduleRegex = /export const scheduleView = \(\) => `[\s\S]*?`;/;
+    const scheduleRegex = /export const scheduleView = [\s\S]*?(?=\nexport const|$)/;
     if (scheduleRegex.test(viewsContent)) {
         viewsContent = viewsContent.replace(scheduleRegex, `export const scheduleView = () => \`${newScheduleHTML}\`;`);
     } else {
@@ -308,7 +308,7 @@ async function main() {
     }
 
     // Replace aboutView
-    const aboutRegex = /export const aboutView = \(\) => `[\s\S]*?`;/;
+    const aboutRegex = /export const aboutView = [\s\S]*?(?=\nexport const|$)/;
     if (aboutRegex.test(viewsContent)) {
         viewsContent = viewsContent.replace(aboutRegex, `export const aboutView = () => \`${newAboutHTML}\`;`);
     } else {
