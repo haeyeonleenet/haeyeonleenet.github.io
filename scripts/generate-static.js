@@ -46,10 +46,10 @@ const template = (title, content, path) => `<!DOCTYPE html>
                 <span></span>
             </button>
             <nav class="site-nav">
-                <a href="/about.html" data-link>About</a>
-                <a href="/media.html" data-link>Media</a>
-                <a href="/schedule.html" data-link>Schedule</a>
-                <a href="/contact.html" data-link>Contact</a>
+                <a href="/about" data-link>About</a>
+                <a href="/media" data-link>Media</a>
+                <a href="/schedule" data-link>Schedule</a>
+                <a href="/contact" data-link>Contact</a>
             </nav>
         </div>
     </header>
