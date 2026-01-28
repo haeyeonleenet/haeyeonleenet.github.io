@@ -18,7 +18,7 @@ try {
 
     // 2. Minify CSS
     console.log('Minifying CSS...');
-    execSync(`npx cleancss -o "${CSS_OUT}" "${CSS_ENTRY}"`, { stdio: 'inherit', cwd: ROOT_DIR });
+    execSync(`npx --yes --package clean-css-cli cleancss -o "${CSS_OUT}" "${CSS_ENTRY}"`, { stdio: 'inherit', cwd: ROOT_DIR });
     console.log(`CSS minified to ${CSS_OUT}`);
 
     console.log('Assets build complete.');

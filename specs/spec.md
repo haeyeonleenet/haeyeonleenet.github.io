@@ -57,6 +57,7 @@
 - **SEO**:
     - Title/Meta tags update dynamically on route change.
     - Static HTML fallbacks provided by `generate-static.js`.
+    - **Automation**: GitHub Actions workflow (`.github/workflows/build-static-site.yml`) automatically builds and commits the latest static content and minified assets on every push to `main`.
 
 ## 4. Implementation Details
 - **Build System**:
@@ -65,13 +66,14 @@
     - `scripts/generate-static.js`: Generates SEO-friendly static `.html` files in root.
     - `esbuild`: Minifies `js/main.js` -> `js/bundle.min.js`.
     - `clean-css`: Minifies `css/style.css` -> `css/style.min.css`.
+    - **CI/CD**: `build-static-site.yml` runs `npm run build` and commits changes to ensure the deployed site is always up-to-date with raw data.
 - **CSS**: `css/style.css` (Source) -> `css/style.min.css` (Production). Uses CSS Grid/Flexbox.
 - **JS**: `js/router.js` (Routing), `js/views.js` (Content Templates), `js/main.js` (Entry).
 - **Data**:
     - Videos: Managed in `data/videos.md` (Markdown Table with Date, Description, and Youtube Link. Title is auto-fetched).
     - Photos: Managed by file existence in `assets/images`.
     - Schedule: Managed in `data/schedule.md` (Markdown Table).
-    - Resume: `resources/resume/haeyeon.lee.md` (Source of Truth for Bio, Education, Experience).
+    - Resume: `resources/resume/*.md` (Source of Truth for Bio, Education, Experience).
 
 ## 5. Content Strategy
 - **Dynamic Loading**: 

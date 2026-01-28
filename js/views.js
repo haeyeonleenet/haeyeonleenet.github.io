@@ -22,10 +22,10 @@ export const aboutView = () => `
             <div class="split-layout">
                 <div class="text-column">
                     <div class="bio-content">
-                        <p>Soprano Haeyeon Lee is a distinguished vocalist recognized for her elegant artistry and compelling stage presence. She currently serves as the Assistant Principal of the Bucheon City Choir, a position she has held since 2019, where she continues to contribute to the ensemble’s professional excellence.</p>
+                        <p>Soprano Haeyeon Lee is a distinguished vocalist recognized for her elegant artistry and compelling stage presence. She currently serves as the Principal of the Bucheon City Choir, a position she has held since 2019, where she continues to contribute to the ensemble’s professional excellence.</p>
 <p>Ms. Lee’s operatic repertoire includes notable roles such as Constance in Dialogues des Carmélites and Lauretta in Gianni Schicchi at the Wilhelma Theater and HMDK Stuttgart in Germany. She also performed the role of Susanna in Le Nozze di Figaro at the Kim Young-Eui Hall at Ewha Womans University.</p>
 <p>As a concert soloist, Ms. Lee has performed in major venues across Korea. Her recent engagements include performing as the soloist for Händel’s Dixit Dominus (2025) and Mendelssohn’s St. Paul (2024) at the Aram Music Hall, Goyang Aram Nuri Arts Center. She also held a Return Recital at the Youngsan Art Hall in 2025 and a Lied Duo Concert at Samik Art Hall in 2021.</p>
-<p>Ms. Lee holds a Certificate of Advanced Studies (C.A.S.) in Vocal Performance and a Master of Arts (M.A.) in Opera from the Staatliche Hochschule für Musik und Darstellende Kunst Stuttgart (HMDK) in Germany. She earned her Bachelor of Arts in Vocal Performance from Ewha Womans University in Seoul. Her artistic development was further enriched by a scholarship from the Bach-Archiv Leipzig and masterclasses with renowned artists such as Hye Kyung Hong, Olaf Bär, and Inge Borkh.</p>
+<p>Ms. Lee holds a Master of Arts (M.A.) in Opera from the Staatliche Hochschule für Musik und Darstellende Kunst Stuttgart (HMDK) in Germany, and a Certificate of Advanced Studies (C.A.S.) in Vocal Performance. She earned her Bachelor of Arts in Vocal Performance from Ewha Womans University in Seoul. Her artistic development was further enriched by a scholarship from the Bach-Archiv Leipzig and masterclasses with renowned artists such as Hye Kyung Hong, Olaf Bär, and Inge Borkh.</p>
                     </div>
                 </div>
                 <!-- Photo lives INSIDE the bio tab -->
@@ -91,9 +91,17 @@ export const aboutView = () => `
             <ul style="margin-bottom: 2rem; line-height: 1.6;">
                 <li>Hei-Kyung Hong, Soprano<br>Seoul, Korea | 2024</li>
 <li>Olaf Bär, Baritone<br>Kirchheim an der Weinstraße, Germany | 2018</li>
-<li>Inge Borkh, Soprano – Stuttgart, Germany | 2018</li>
-<li>Margreet Honig, Soprano – Stuttgart, Germany | 2016</li>
-<li>Ingeborg Danz, Alto – Seoul, Korea | 2014</li>
+<li>Inge Borkh, Soprano<br>Stuttgart, Germany | 2018</li>
+<li>Margreet Honig, Soprano<br>Stuttgart, Germany | 2016</li>
+<li>Ingeborg Danz, Alto<br>Seoul, Korea | 2014</li>
+            </ul>
+        </div>
+    
+
+        <div class="cv-section">
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;">Contacts</h3>
+            <ul style="margin-bottom: 2rem; line-height: 1.6;">
+                <li>Email: sop.haeyeon.lee@gmail.com<br>Phone: +82-10-3697-1398<br>Seoul, Republic of Korea</li>
             </ul>
         </div>
     
