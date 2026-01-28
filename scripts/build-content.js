@@ -18,7 +18,7 @@ function getImages() {
     if (!fs.existsSync(IMAGES_DIR)) return [];
     return fs.readdirSync(IMAGES_DIR)
         .filter(file => /\.(jpg|jpeg|png|webp|gif)$/i.test(file))
-        .map(file => `assets/images/${file}`);
+        .map(file => `/assets/images/${file}`);
 }
 
 // 2. Fetch OEmbed Data
@@ -234,7 +234,7 @@ function generateAboutHTML(resumeData) {
         </div>
     `).join('\n');
 
-    const portraitImg = 'assets/images/EYR00610.JPG';
+    const portraitImg = '/assets/images/EYR00610.JPG';
 
     return `
     <section class="content-section fade-in">
