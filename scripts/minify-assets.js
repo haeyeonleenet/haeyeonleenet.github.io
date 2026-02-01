@@ -12,10 +12,12 @@ console.log('Building assets...');
 try {
     // 1. Bundle and Minify JS
     console.log('Bundling JS...');
+    const outDir = path.dirname(JS_OUT);
+    if (!fs.existsSync(outDir)) {
+        fs.mkdirSync(outDir, { recursive: true });
+    }
     execSync(`npx esbuild "${JS_ENTRY}" --bundle --minify --outfile="${JS_OUT}"`, { stdio: 'inherit', cwd: ROOT_DIR });
     console.log(`JS bundled to ${JS_OUT}`);
-
-
 
     console.log('Assets build complete.');
 } catch (error) {
