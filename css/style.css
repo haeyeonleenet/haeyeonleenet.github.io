@@ -248,6 +248,8 @@ body.home-page .site-title {
         text-align: center;
         order: -1;
         /* Text first on mobile */
+        width: 100%;
+        max-width: 500px;
     }
 
     .hero-text h1 {
