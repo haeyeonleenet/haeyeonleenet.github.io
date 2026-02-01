@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About | Haeyeon Lee</title>
     <meta name="description" content="Official website of Soprano Haeyeon Lee. Biography, Schedule, and Media.">
-
+    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Lato:wght@300;400&display=swap"
-        rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    
     <!-- Styles -->
     <link rel="stylesheet" href="/css/style.min.css">
 </head>
-
 <body>
     <header class="site-header">
         <div class="header-container">
@@ -29,152 +26,115 @@
             <nav class="site-nav">
                 <a href="/about" data-link>About</a>
                 <a href="/media" data-link>Media</a>
-                <!-- <a href="/schedule" data-link>Schedule</a> -->
+                <a href="/schedule" data-link>Schedule</a>
                 <a href="/contact" data-link>Contact</a>
             </nav>
         </div>
     </header>
 
     <main id="app" class="site-content">
+        
+    <section class="content-section fade-in">
+        <h2>About</h2>
+        
+        <!-- TABS HEADER -->
+        <div class="media-tabs" style="margin-bottom: 2rem;">
+            <button class="tab-btn active" data-tab="tab-bio">Bio</button>
+            <button class="tab-btn" data-tab="tab-cv">CV</button>
+        </div>
 
-        <section class="content-section fade-in">
-            <h2>About</h2>
-
-            <!-- TABS HEADER -->
-            <div class="media-tabs" style="margin-bottom: 2rem;">
-                <button class="tab-btn active" data-tab="tab-bio">Bio</button>
-                <button class="tab-btn" data-tab="tab-cv">CV</button>
-            </div>
-
-            <!-- BIO TAB (With Split Layout & Photo) -->
-            <div id="tab-bio" class="tab-pane active">
-                <div class="split-layout">
-                    <div class="text-column">
-                        <div class="bio-content">
-                            <p>Soprano Haeyeon Lee is a distinguished vocalist recognized for her elegant artistry and
-                                compelling stage presence. She currently serves as the Principal of the Bucheon City
-                                Choir, a position she has held since 2019, where she continues to contribute to the
-                                ensemble’s professional excellence.</p>
-                            <p>Ms. Lee’s operatic repertoire includes notable roles such as Constance in Dialogues des
-                                Carmélites and Lauretta in Gianni Schicchi at the Wilhelma Theater and HMDK Stuttgart in
-                                Germany. She also performed the role of Susanna in Le Nozze di Figaro at the Kim
-                                Young-Eui Hall at Ewha Womans University.</p>
-                            <p>As a concert soloist, Ms. Lee has performed in major venues across Korea. Her recent
-                                engagements include performing as the soloist for Händel’s Dixit Dominus (2025) and
-                                Mendelssohn’s St. Paul (2024) at the Aram Music Hall, Goyang Aram Nuri Arts Center. She
-                                also held a Return Recital at the Youngsan Art Hall in 2025 and a Lied Duo Concert at
-                                Samik Art Hall in 2021.</p>
-                            <p>Ms. Lee holds a Master of Arts (M.A.) in Opera from the Staatliche Hochschule für Musik
-                                und Darstellende Kunst Stuttgart (HMDK) in Germany, and a Certificate of Advanced
-                                Studies (C.A.S.) in Vocal Performance. She earned her Bachelor of Arts in Vocal
-                                Performance from Ewha Womans University in Seoul. Her artistic development was further
-                                enriched by a scholarship from the Bach-Archiv Leipzig and masterclasses with renowned
-                                artists such as Hye Kyung Hong, Olaf Bär, and Inge Borkh.</p>
-                        </div>
-                    </div>
-                    <!-- Photo lives INSIDE the bio tab -->
-                    <div class="image-column">
-                        <img src="/assets/images/EYR00610.JPG" alt="Haeyeon Lee Portrait" class="about-image">
+        <!-- BIO TAB (With Split Layout & Photo) -->
+        <div id="tab-bio" class="tab-pane active">
+            <div class="split-layout">
+                <div class="text-column">
+                    <div class="bio-content">
+                        <p>Soprano Haeyeon Lee is a distinguished vocalist recognized for her elegant artistry and compelling stage presence. She currently serves as the Principal of the Bucheon City Choir, a position she has held since 2019, where she continues to contribute to the ensemble’s professional excellence.</p>
+<p>Ms. Lee’s operatic repertoire includes notable roles such as Constance in Dialogues des Carmélites and Lauretta in Gianni Schicchi at the Wilhelma Theater and HMDK Stuttgart in Germany. She also performed the role of Susanna in Le Nozze di Figaro at the Kim Young-Eui Hall at Ewha Womans University.</p>
+<p>As a concert soloist, Ms. Lee has performed in major venues across Korea. Her recent engagements include performing as the soloist for Händel’s Dixit Dominus (2025) and Mendelssohn’s St. Paul (2024) at the Aram Music Hall, Goyang Aram Nuri Arts Center. She also held a Return Recital at the Youngsan Art Hall in 2025 and a Lied Duo Concert at Samik Art Hall in 2021.</p>
+<p>Ms. Lee holds a Master of Arts (M.A.) in Opera from the Staatliche Hochschule für Musik und Darstellende Kunst Stuttgart (HMDK) in Germany, and a Certificate of Advanced Studies (C.A.S.) in Vocal Performance. She earned her Bachelor of Arts in Vocal Performance from Ewha Womans University in Seoul. Her artistic development was further enriched by a scholarship from the Bach-Archiv Leipzig and masterclasses with renowned artists such as Hye Kyung Hong, Olaf Bär, and Inge Borkh.</p>
                     </div>
                 </div>
-            </div>
-
-            <!-- CV TAB (Full Width, No Photo) -->
-            <div id="tab-cv" class="tab-pane" style="display:none;">
-                <div class="cv-container" style="max-width: 800px; margin: 0 auto;">
-
-                    <div class="cv-section">
-                        <h3
-                            style="margin-top: 2rem; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;">
-                            Selected Performances</h3>
-                        <ul style="margin-bottom: 2rem; line-height: 1.6;">
-                            <li>Soloist, Händel dixit dominus<br>Aram Music Hall, Goyang Aram Nuri Arts Center, Korea |
-                                2025</li>
-                            <li>Return Recital<br>Youngsan Art Hall, Seoul, Korea | 2025</li>
-                            <li>Soloist, Mendelssohn St. Paul (Paulus)<br>Aram Music Hall, Goyang Aram Nuri Arts Center,
-                                Korea | 2024</li>
-                            <li>Lied Duo Concert<br>Samik Art Hall, Seoul, Korea | 2021</li>
-                        </ul>
-                    </div>
-
-
-                    <div class="cv-section">
-                        <h3
-                            style="margin-top: 2rem; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;">
-                            Opera & Stage Performances</h3>
-                        <ul style="margin-bottom: 2rem; line-height: 1.6;">
-                            <li>Constance – Dialogues des Carmélites<br>HMDK Stuttgart, Stuttgart, Germany | Dec 2017
-                            </li>
-                            <li>Lauretta – Gianni Schicchi<br>Wilhelma Theater, Stuttgart, Germany | Jan 2017</li>
-                            <li>Susanna – Le Nozze di Figaro<br>Kim Young-Eui Hall, Ewha Womans University, Seoul, Korea
-                                | May 2014</li>
-                        </ul>
-                    </div>
-
-
-                    <div class="cv-section">
-                        <h3
-                            style="margin-top: 2rem; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;">
-                            Professional Experience</h3>
-                        <ul style="margin-bottom: 2rem; line-height: 1.6;">
-                            <li>Soprano Section Member (Principal)<br>Bucheon City Choir (Professional Ensemble), Korea
-                                | 2019 – Present</li>
-                        </ul>
-                    </div>
-
-
-                    <div class="cv-section">
-                        <h3
-                            style="margin-top: 2rem; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;">
-                            Education</h3>
-                        <ul style="margin-bottom: 2rem; line-height: 1.6;">
-                            <li>Certificate of Advanced Studies (C.A.S.), Vocal Performance<br>Staatliche Hochschule für
-                                Musik und Darstellende Kunst Stuttgart (HMDK), Germany<br>2018 – 2019</li>
-                            <li>Master of Arts (M.A.), Opera<br>Staatliche Hochschule für Musik und Darstellende Kunst
-                                Stuttgart (HMDK), Germany<br>2016 – 2018</li>
-                            <li>Bachelor of Arts (B.A.), Vocal Performance<br>Ewha Womans University, Seoul,
-                                Korea<br>2011 – 2015</li>
-                        </ul>
-                    </div>
-
-
-                    <div class="cv-section">
-                        <h3
-                            style="margin-top: 2rem; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;">
-                            Scholarship</h3>
-                        <ul style="margin-bottom: 2rem; line-height: 1.6;">
-                            <li>Bach-Archiv Leipzig, Germany | 2015</li>
-                        </ul>
-                    </div>
-
-
-                    <div class="cv-section">
-                        <h3
-                            style="margin-top: 2rem; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;">
-                            Masterclasses</h3>
-                        <ul style="margin-bottom: 2rem; line-height: 1.6;">
-                            <li>Hei-Kyung Hong, Soprano<br>Seoul, Korea | 2024</li>
-                            <li>Olaf Bär, Baritone<br>Kirchheim an der Weinstraße, Germany | 2018</li>
-                            <li>Inge Borkh, Soprano<br>Stuttgart, Germany | 2018</li>
-                            <li>Margreet Honig, Soprano<br>Stuttgart, Germany | 2016</li>
-                            <li>Ingeborg Danz, Alto<br>Seoul, Korea | 2014</li>
-                        </ul>
-                    </div>
-
-
-                    <div class="cv-section">
-                        <h3
-                            style="margin-top: 2rem; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;">
-                            Contacts</h3>
-                        <ul style="margin-bottom: 2rem; line-height: 1.6;">
-                            <li>Email: sop.haeyeon.lee(at)gmail.com<br>Seoul, Republic of Korea</li>
-                        </ul>
-                    </div>
-
+                <!-- Photo lives INSIDE the bio tab -->
+                <div class="image-column">
+                    <img src="/assets/images/EYR00610.JPG" alt="Haeyeon Lee Portrait" class="about-image">
                 </div>
             </div>
+        </div>
 
-        </section>
+        <!-- CV TAB (Full Width, No Photo) -->
+        <div id="tab-cv" class="tab-pane" style="display:none;">
+            <div class="cv-container" style="max-width: 800px; margin: 0 auto;">
+                
+        <div class="cv-section">
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;">Selected Performances</h3>
+            <ul style="margin-bottom: 2rem; line-height: 1.6;">
+                <li>Soloist, Händel dixit dominus<br>Aram Music Hall, Goyang Aram Nuri Arts Center, Korea | 2025</li>
+<li>Return Recital<br>Youngsan Art Hall, Seoul, Korea | 2025</li>
+<li>Soloist, Mendelssohn St. Paul (Paulus)<br>Aram Music Hall, Goyang Aram Nuri Arts Center, Korea | 2024</li>
+<li>Lied Duo Concert<br>Samik Art Hall, Seoul, Korea | 2021</li>
+            </ul>
+        </div>
+    
+
+        <div class="cv-section">
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;">Opera & Stage Performances</h3>
+            <ul style="margin-bottom: 2rem; line-height: 1.6;">
+                <li>Constance – Dialogues des Carmélites<br>HMDK Stuttgart, Stuttgart, Germany | Dec 2017</li>
+<li>Lauretta – Gianni Schicchi<br>Wilhelma Theater, Stuttgart, Germany | Jan 2017</li>
+<li>Susanna – Le Nozze di Figaro<br>Kim Young-Eui Hall, Ewha Womans University, Seoul, Korea | May 2014</li>
+            </ul>
+        </div>
+    
+
+        <div class="cv-section">
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;">Professional Experience</h3>
+            <ul style="margin-bottom: 2rem; line-height: 1.6;">
+                <li>Soprano Section Member (Principal)<br>Bucheon City Choir (Professional Ensemble), Korea |  2019 – Present</li>
+            </ul>
+        </div>
+    
+
+        <div class="cv-section">
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;">Education</h3>
+            <ul style="margin-bottom: 2rem; line-height: 1.6;">
+                <li>Certificate of Advanced Studies (C.A.S.), Vocal Performance<br>Staatliche Hochschule für Musik und Darstellende Kunst Stuttgart (HMDK), Germany<br>2018 – 2019</li>
+<li>Master of Arts (M.A.), Opera<br>Staatliche Hochschule für Musik und Darstellende Kunst Stuttgart (HMDK), Germany<br>2016 – 2018</li>
+<li>Bachelor of Arts (B.A.), Vocal Performance<br>Ewha Womans University, Seoul, Korea<br>2011 – 2015</li>
+            </ul>
+        </div>
+    
+
+        <div class="cv-section">
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;">Scholarship</h3>
+            <ul style="margin-bottom: 2rem; line-height: 1.6;">
+                <li>Bach-Archiv Leipzig, Germany | 2015</li>
+            </ul>
+        </div>
+    
+
+        <div class="cv-section">
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;">Masterclasses</h3>
+            <ul style="margin-bottom: 2rem; line-height: 1.6;">
+                <li>Hei-Kyung Hong, Soprano<br>Seoul, Korea | 2024</li>
+<li>Olaf Bär, Baritone<br>Kirchheim an der Weinstraße, Germany | 2018</li>
+<li>Inge Borkh, Soprano<br>Stuttgart, Germany | 2018</li>
+<li>Margreet Honig, Soprano<br>Stuttgart, Germany | 2016</li>
+<li>Ingeborg Danz, Alto<br>Seoul, Korea | 2014</li>
+            </ul>
+        </div>
+    
+
+        <div class="cv-section">
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;">Contacts</h3>
+            <ul style="margin-bottom: 2rem; line-height: 1.6;">
+                <li>Email: sop.haeyeon.lee@gmail.com<br>Phone: +82-10-3697-1398<br>Seoul, Republic of Korea</li>
+            </ul>
+        </div>
+    
+            </div>
+        </div>
+
+    </section>
 
     </main>
 
@@ -182,7 +142,8 @@
         <div class="footer-content">
             <p>&copy; <span id="year">2026</span> Haeyeon Lee. All Rights Reserved.</p>
             <div class="social-links">
-                <a href="https://www.youtube.com/@Norae_haeyeon" target="_blank" aria-label="Youtube">Youtube</a>
+                <a href="#" target="_blank" aria-label="Instagram">Instagram</a>
+                <a href="#" target="_blank" aria-label="SoundCloud">SoundCloud</a>
             </div>
         </div>
     </footer>
@@ -192,5 +153,4 @@
         // SEO Helper
     </script>
 </body>
-
 </html>

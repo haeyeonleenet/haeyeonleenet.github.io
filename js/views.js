@@ -120,10 +120,9 @@ export const mediaView = (activeTab = 'photos') => `
         <div class="media-content">
             <div id="photos" class="tab-pane active" style="display:block;">
                 <div class="media-grid">
-                    <img src="/assets/images/EYR00610.JPG" alt="Gallery Image" loading="lazy">
-                    <img src="/assets/images/EYR00658.JPG" alt="Gallery Image" loading="lazy">
-                    <img src="/assets/images/EYR00821.JPG" alt="Gallery Image" loading="lazy">
-                    <img src="/assets/images/EYR01028.JPG" alt="Gallery Image" loading="lazy">
+                    <img src="/assets/images/image1.jpeg" alt="Gallery Image" loading="lazy">
+                    <img src="/assets/images/image2.jpeg" alt="Gallery Image" loading="lazy">
+                    <img src="/assets/images/main.jpeg" alt="Gallery Image" loading="lazy">
                 </div>
             </div>
             <div id="video" class="tab-pane " style="display:none;">
@@ -131,24 +130,36 @@ export const mediaView = (activeTab = 'photos') => `
                     
                     <div class="video-card">
                         <div class="video-wrapper">
-                            <iframe width="200" height="113" src="https://www.youtube.com/embed/6u0H9qrfP0A?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="&quot;Es lebt eine Vilja&quot;- Léhar: Die lustige Witwe, Act II  소프라노 이해연"></iframe>
+                            <iframe width="200" height="113" src="https://www.youtube.com/embed/aBPVagm-MwE?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="F. Schubert - An die Nachtigall, D. 497"></iframe>
                         </div>
                         <div class="video-info">
-                            <h3>"Es lebt eine Vilja"- Léhar: Die lustige Witwe, Act II  소프라노 이해연</h3>
-                            <p class="date">2026-01-01</p>
-                            <p class="desc">Live performance from the Winter Gala.</p>
+                            <h3>F. Schubert - An die Nachtigall, D. 497</h3>
+                            <p class="date">2025-10-01</p>
+                            <p class="desc">Live Performance from Seocho M.Stars 5th Term</p>
                         </div>
                     </div>
     
 
                     <div class="video-card">
                         <div class="video-wrapper">
-                            <iframe width="200" height="113" src="https://www.youtube.com/embed/tzsZYtSoGvE?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="La Damoiselle élue - Claude Debussy - 소프라노 이해연"></iframe>
+                            <iframe width="200" height="113" src="https://www.youtube.com/embed/6u0H9qrfP0A?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="&quot;Es lebt eine Vilja&quot;- Léhar: Die lustige Witwe, Act II  소프라노 이해연"></iframe>
                         </div>
                         <div class="video-info">
-                            <h3>La Damoiselle élue - Claude Debussy - 소프라노 이해연</h3>
-                            <p class="date">2026-02-15</p>
-                            <p class="desc">Conducted by Maestro Kim at Arts Center.</p>
+                            <h3>"Es lebt eine Vilja"- Léhar: Die lustige Witwe, Act II  소프라노 이해연</h3>
+                            <p class="date">2025-09-26</p>
+                            <p class="desc">Live Performance from Winter Gala</p>
+                        </div>
+                    </div>
+    
+
+                    <div class="video-card">
+                        <div class="video-wrapper">
+                            <iframe width="200" height="113" src="https://www.youtube.com/embed/vJlTr-NDHek?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="Mein Herr Marquis «Die Fledermaus», Strauss- 소프라노 이해연"></iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3>Mein Herr Marquis «Die Fledermaus», Strauss- 소프라노 이해연</h3>
+                            <p class="date">2025-09-26</p>
+                            <p class="desc">Live Performance from Winter Gala</p>
                         </div>
                     </div>
     
@@ -160,19 +171,55 @@ export const mediaView = (activeTab = 'photos') => `
                         <div class="video-info">
                             <h3>[소프라노 이해연] 마중 - 윤학준</h3>
                             <p class="date">2025-03-28</p>
-                            <p class="desc">Return Recital</p>
+                            <p class="desc">Live Performance from Return Recital</p>
                         </div>
                     </div>
     
 
                     <div class="video-card">
                         <div class="video-wrapper">
-                            <iframe width="200" height="113" src="https://www.youtube.com/embed/aBPVagm-MwE?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="F. Schubert - An die Nachtigall, D. 497"></iframe>
+                            <iframe width="200" height="113" src="https://www.youtube.com/embed/4fNNssbs-24?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="[소프라노 이해연] Exsultate Jubilate - W. A. Mozart"></iframe>
                         </div>
                         <div class="video-info">
-                            <h3>F. Schubert - An die Nachtigall, D. 497</h3>
-                            <p class="date">2025-10-01</p>
-                            <p class="desc">서리풀청년예술단 [서초M.스타즈] 5기</p>
+                            <h3>[소프라노 이해연] Exsultate Jubilate - W. A. Mozart</h3>
+                            <p class="date">2026-03-28</p>
+                            <p class="desc">Live Performance from Return Recital</p>
+                        </div>
+                    </div>
+    
+
+                    <div class="video-card">
+                        <div class="video-wrapper">
+                            <iframe width="200" height="113" src="https://www.youtube.com/embed/LqJ6VFAw41g?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="[소프라노 이해연] Airs chantés - F. Poulenc"></iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3>[소프라노 이해연] Airs chantés - F. Poulenc</h3>
+                            <p class="date">2025-03-28</p>
+                            <p class="desc">Live Performance from Return Recital</p>
+                        </div>
+                    </div>
+    
+
+                    <div class="video-card">
+                        <div class="video-wrapper">
+                            <iframe width="200" height="113" src="https://www.youtube.com/embed/1F91ePonrUY?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="[소프라노 이해연]&quot;O Dieu! Que de bijoux&quot;, Faust - Gounod"></iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3>[소프라노 이해연]"O Dieu! Que de bijoux", Faust - Gounod</h3>
+                            <p class="date">2025-03-28</p>
+                            <p class="desc">Live Performance from Return Recital</p>
+                        </div>
+                    </div>
+    
+
+                    <div class="video-card">
+                        <div class="video-wrapper">
+                            <iframe width="200" height="113" src="https://www.youtube.com/embed/tzsZYtSoGvE?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="La Damoiselle élue - Claude Debussy - 소프라노 이해연"></iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3>La Damoiselle élue - Claude Debussy - 소프라노 이해연</h3>
+                            <p class="date">2020-11-09</p>
+                            <p class="desc">Live Performance from Concert</p>
                         </div>
                     </div>
     
@@ -181,31 +228,7 @@ export const mediaView = (activeTab = 'photos') => `
         </div>
     </section>
 `.replace(/id="photos" class="tab-pane.*?" style="display:.*?"/, `id="photos" class="tab-pane ${activeTab === 'photos' ? 'active' : ''}" style="display:${activeTab === 'photos' ? 'block' : 'none'};"`).replace(/id="video" class="tab-pane.*?" style="display:.*?"/, `id="video" class="tab-pane ${activeTab === 'video' ? 'active' : ''}" style="display:${activeTab === 'video' ? 'block' : 'none'};"`).replace(/href="\/media\/photos" class="tab-btn.*?"/, `href="/media/photos" class="tab-btn ${activeTab === 'photos' ? 'active' : ''}"`).replace(/href="\/media\/videos" class="tab-btn.*?"/, `href="/media/videos" class="tab-btn ${activeTab === 'video' ? 'active' : ''}"`);
-export const scheduleView = () => `
-    <section class="content-section fade-in">
-        <h2>Schedule</h2>
-        <ul class="schedule-list">
-            
-            <li class="schedule-item">
-                <span class="date">OCT 2026</span>
-                <span class="event">Recital at Arts Center</span>
-                <span class="location">Seoul, Korea</span>
-            </li>
-
-            <li class="schedule-item">
-                <span class="date">DEC 2026</span>
-                <span class="event">Winter Gala Concert</span>
-                <span class="location">New York, USA</span>
-            </li>
-
-            <li class="schedule-item">
-                <span class="date">JAN 2027</span>
-                <span class="event">Opera Debut: "La Bohème"</span>
-                <span class="location">London, UK</span>
-            </li>
-        </ul>
-    </section>
-`;
+export const scheduleView = () => `<p>No upcoming events.</p>`;
 export const contactView = () => `
     <section class="content-section fade-in">
         <h2>Contact</h2>
