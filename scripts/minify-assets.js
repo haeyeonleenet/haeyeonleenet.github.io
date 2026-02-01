@@ -5,8 +5,7 @@ const path = require('path');
 const ROOT_DIR = path.resolve(__dirname, '..');
 const JS_ENTRY = path.join(ROOT_DIR, 'js/main.js');
 const JS_OUT = path.join(ROOT_DIR, 'js/bundle.min.js');
-const CSS_ENTRY = path.join(ROOT_DIR, 'css/style.css');
-const CSS_OUT = path.join(ROOT_DIR, 'css/style.min.css');
+
 
 console.log('Building assets...');
 
