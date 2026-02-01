@@ -4,7 +4,7 @@ const https = require('https');
 
 const IMAGES_DIR = path.join(__dirname, '../assets/images');
 const VIDEOS_FILE = path.join(__dirname, '../assets/videos/videos.md');
-// const SCHEDULE_FILE = path.join(__dirname, '../data/schedule.md');
+
 const RESUME_FILE = path.join(__dirname, '../assets/resume/haeyeon.lee.md');
 const VIEWS_FILE = path.join(__dirname, '../js/views.js');
 
@@ -134,52 +134,9 @@ function generateMediaView(images, videos, activeTab = 'photos') {
 `;
 }
 
-// 3. Parse Schedule
-function getSchedule() {
-    if (!fs.existsSync(SCHEDULE_FILE)) return [];
 
-    const content = fs.readFileSync(SCHEDULE_FILE, 'utf8');
-    const lines = content.split('\n');
-    const events = [];
 
-    for (const line of lines) {
-        const trimmed = line.trim();
-        if (trimmed.startsWith('|')) {
-            if (trimmed.includes('---')) continue;
-            if (trimmed.toLowerCase().includes('date') && trimmed.toLowerCase().includes('event')) continue;
 
-            const cols = trimmed.split('|').map(c => c.trim()).filter(c => c !== '');
-            if (cols.length >= 3) {
-                events.push({
-                    date: cols[0],
-                    event: cols[1],
-                    location: cols[2]
-                });
-            }
-        }
-    }
-    return events;
-}
-
-function generateScheduleHTML(events) {
-    if (events.length === 0) return '<p>No upcoming events.</p>';
-
-    const listItems = events.map(e => `
-            <li class="schedule-item">
-                <span class="date">${e.date}</span>
-                <span class="event">${e.event}</span>
-                <span class="location">${e.location}</span>
-            </li>`).join('\n');
-
-    return `
-    <section class="content-section fade-in">
-        <h2>Schedule</h2>
-        <ul class="schedule-list">
-            ${listItems}
-        </ul>
-    </section>
-`;
-}
 
 // 4. Parse Resume
 function getResume() {
@@ -279,15 +236,13 @@ async function main() {
     const videos = await getVideos();
     console.log(`Processed ${videos.length} videos.`);
 
-    // const schedule = getSchedule();
-    const schedule = [];
-    // console.log(`Found ${schedule.length} schedule events.`);
+
 
     const resume = getResume();
     console.log(`Parsed resume sections: Bio length ${resume.bio.length}, CV sections ${resume.cv.length}`);
 
     const newMediaHTML = generateMediaView(images, videos);
-    const newScheduleHTML = generateScheduleHTML(schedule);
+
     const newAboutHTML = generateAboutHTML(resume);
 
     let viewsContent = fs.readFileSync(VIEWS_FILE, 'utf8');
@@ -300,13 +255,7 @@ async function main() {
         console.error('Could not find mediaView');
     }
 
-    // Replace scheduleView
-    const scheduleRegex = /export const scheduleView = [\s\S]*?(?=\nexport const|$)/;
-    if (scheduleRegex.test(viewsContent)) {
-        viewsContent = viewsContent.replace(scheduleRegex, `export const scheduleView = () => \`${newScheduleHTML}\`;`);
-    } else {
-        console.error('Could not find scheduleView');
-    }
+
 
     // Replace aboutView
     const aboutRegex = /export const aboutView = [\s\S]*?(?=\nexport const|$)/;
