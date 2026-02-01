@@ -3,9 +3,9 @@ const path = require('path');
 const https = require('https');
 
 const IMAGES_DIR = path.join(__dirname, '../assets/images');
-const VIDEOS_FILE = path.join(__dirname, '../data/videos.md');
+const VIDEOS_FILE = path.join(__dirname, '../assets/videos/videos.md');
 // const SCHEDULE_FILE = path.join(__dirname, '../data/schedule.md');
-const RESUME_FILE = path.join(__dirname, '../resources/resume/haeyeon.lee.md');
+const RESUME_FILE = path.join(__dirname, '../assets/resume/haeyeon.lee.md');
 const VIEWS_FILE = path.join(__dirname, '../js/views.js');
 
 // Helper to clean Markdown bold syntax

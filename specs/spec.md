@@ -25,7 +25,7 @@
 
 2.  **About (`/about`)**
     - **Layout**: Split view (Desktop) / Stacked (Mobile).
-    - **Content**: Sourced from `resources/resume/` (Extracted during development phase).
+    - **Content**: Sourced from `assets/resume/` (Extracted during development phase).
     - **Sections**:
         - **Bio**: Narrative biography. Paragraphs must have `1.8em` spacing for readability.
         - **CV**: Professional curriculum vitae. List items must have `1.8em` spacing.
@@ -33,7 +33,7 @@
 3.  **Media (`/media` -> redirects to `/media/photos`)**
     - **Photos (`/media/photos`)**: Dynamic Grid layout generated from `assets/images`.
         - **Format**: Portrait aspect ratio (`3/4`) with `object-position: top` to ensure faces remain visible.
-    - **Video (`/media/videos`)**: Dynamic Card layout generated from `data/videos.md`.
+    - **Video (`/media/videos`)**: Dynamic Card layout generated from `assets/videos/videos.md`.
         - **Format**: Responsive Video Cards (16:9 <iframe> embed).
         - **Source**: YouTube URLs via OEmbed.
 
@@ -60,7 +60,7 @@
 ## 4. Implementation Details
 - **Build System**:
     - **Command**: `npm run build` (Chains content build, minification, and static generation).
-    - `scripts/build-content.js`: Scans `assets/images` and `data/videos.md` to inject content into `js/views.js`.
+    - `scripts/build-content.js`: Scans `assets/images` and `assets/videos/videos.md` to inject content into `js/views.js`.
     - `scripts/generate-static.js`: Generates SEO-friendly static `.html` files in root.
     - `esbuild`: Minifies `js/main.js` -> `js/bundle.min.js`.
 
@@ -68,12 +68,12 @@
 - **CSS**: `css/style.css` (Source). Uses CSS Grid/Flexbox.
 - **JS**: `js/router.js` (Routing), `js/views.js` (Content Templates), `js/main.js` (Entry).
 - **Data**:
-    - Videos: Managed in `data/videos.md` (Markdown Table with Date, Description, and Youtube Link. Title is auto-fetched).
+    - Videos: Managed in `assets/videos/videos.md` (Markdown Table with Date, Description, and Youtube Link. Title is auto-fetched).
     - Photos: Managed by file existence in `assets/images`.
-    - Resume: `resources/resume/*.md` (Source of Truth for Bio, Education, Experience).
+    - Resume: `assets/resume/*.md` (Source of Truth for Bio, Education, Experience).
 
 ## 5. Content Strategy
 - **Dynamic Loading**: 
     - Photos are not hardcoded; they are scraped from the directory during build.
-    - Videos are embedded as iframes. Title is OEmbed-fetched. Date & Description are manual from `data/videos.md`.
+    - Videos are embedded as iframes. Title is OEmbed-fetched. Date & Description are manual from `assets/videos/videos.md`.
 

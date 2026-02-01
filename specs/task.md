@@ -40,7 +40,7 @@
 - [x] [T024] specific minification of JS files (Bundling with esbuild)
 
 ## Phase 8: Dynamic Media Content (Build System)
-- [x] [T025] Create `data/videos.md` and define format
+- [x] [T025] Create `assets/videos/videos.md` and define format
 - [x] [T026] Create `scripts/build-content.js` to scan images and fetch YouTube metadata
 - [x] [T027] Update `js/views.js` via the build script
 - [x] [T028] Verify dynamic content loading locally
