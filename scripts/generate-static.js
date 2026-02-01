@@ -4,7 +4,7 @@ const path = require('path');
 // Extract content from views.js strings (simplified regex approach since we can't import ES modules easily in CommonJS script without setup)
 // Actually, we can read views.js file content and extract return values via regex to avoid module issues in a simple script.
 
-const viewsPath = path.join(__dirname, '../js/views.js');
+const viewsPath = path.join(__dirname, '../src/js/views.js');
 const viewsContent = fs.readFileSync(viewsPath, 'utf8');
 
 const extractView = (name) => {
@@ -119,6 +119,14 @@ const pages = [
     { file: 'media/index.html', title: 'Media | Haeyeon Lee', content: processMediaContent(mediaRawContent, 'photos') },
 ];
 
+// Copy src/contact.html to root contact.html
+const contactSrc = path.join(__dirname, '../src/contact.html');
+const contactDest = path.join(__dirname, '../contact.html');
+if (fs.existsSync(contactSrc)) {
+    fs.copyFileSync(contactSrc, contactDest);
+    console.log('Copied contact.html from src/');
+}
+
 pages.forEach(page => {
     const filePath = path.join(__dirname, '../' + page.file);
     const dir = path.dirname(filePath);
@@ -131,7 +139,7 @@ pages.forEach(page => {
 
 // Update index.html to have static home content? 
 // Current index.html has empty #app. Let's make it SEO friendly too.
-const indexContent = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
+const indexContent = fs.readFileSync(path.join(__dirname, '../src/index.html'), 'utf8');
 const indexWithContent = indexContent.replace('<!-- Dynamic Content Injected Here -->', homeContent);
 fs.writeFileSync(path.join(__dirname, '../index.html'), indexWithContent);
 console.log('Updated index.html with static content');

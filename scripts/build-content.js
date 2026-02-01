@@ -6,7 +6,7 @@ const IMAGES_DIR = path.join(__dirname, '../assets/images');
 const VIDEOS_FILE = path.join(__dirname, '../assets/videos/videos.md');
 
 const RESUME_FILE = path.join(__dirname, '../assets/resume/haeyeon.lee.md');
-const VIEWS_FILE = path.join(__dirname, '../js/views.js');
+const VIEWS_FILE = path.join(__dirname, '../src/js/views.js');
 
 // Helper to clean Markdown bold syntax
 function cleanMarkdown(text) {

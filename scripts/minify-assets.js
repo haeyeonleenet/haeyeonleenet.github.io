@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT_DIR = path.resolve(__dirname, '..');
-const JS_ENTRY = path.join(ROOT_DIR, 'js/main.js');
+const JS_ENTRY = path.join(ROOT_DIR, 'src/js/main.js');
 const JS_OUT = path.join(ROOT_DIR, 'js/bundle.min.js');
 
 

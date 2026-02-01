@@ -1,4 +1,0 @@
-# Schedule
-
-| Date | Event | Location |
-|------|-------|----------|
