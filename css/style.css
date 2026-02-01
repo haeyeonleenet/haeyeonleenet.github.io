@@ -90,11 +90,19 @@ img {
     font-size: 1.5rem;
     letter-spacing: 0.15em;
     font-weight: 500;
+    transition: opacity 0.3s ease;
+}
+
+/* Hide title on Home Page (when body has home-page class) */
+body.home-page .site-title {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .site-nav {
     display: flex;
     gap: 2rem;
+    margin-left: auto;
 }
 
 .site-nav a {
