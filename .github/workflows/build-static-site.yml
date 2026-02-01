@@ -26,7 +26,7 @@ jobs:
         cache: 'npm'
         
     - name: Install dependencies
-      run: npm ci
+      run: npm install
       
     - name: Build Scripts
       # This runs node scripts/build-content.js && node scripts/minify-assets.js && node scripts/generate-static.js
