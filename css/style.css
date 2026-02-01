@@ -189,6 +189,13 @@ img {
     padding: 0 var(--spacing-container);
 }
 
+@media (min-width: 600px) {
+    .hero-section {
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+}
+
 .hero-content {
     z-index: 2;
 }
