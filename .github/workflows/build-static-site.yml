@@ -31,7 +31,7 @@ jobs:
     - name: Build Scripts
       # This runs node scripts/build-content.js && node scripts/minify-assets.js && node scripts/generate-static.js
       # which updates js/views.js, creates/updates *.min.js/css, and updates html files in root
-      run: npm run build
+      run: node scripts/build-content.js && node scripts/minify-assets.js && node scripts/generate-static.js
       
     - name: Commit and Push changes
       run: |
