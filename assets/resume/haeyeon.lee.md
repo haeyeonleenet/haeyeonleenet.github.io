@@ -104,9 +104,3 @@ Stuttgart, Germany | 2016
 
 Ingeborg Danz, Alto
 Seoul, Korea | 2014
-
-
-**Contacts**
-Email: sop.haeyeon.lee(at)gmail.com
-Seoul, Republic of Korea
-
