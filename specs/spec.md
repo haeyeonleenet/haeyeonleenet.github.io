@@ -49,7 +49,8 @@
 - **Responsiveness**: Mobile-first CSS. Burger menu for mobile navigation.
 - **Assets**: 
     - Images source: `assets/images`.
-    - JS/CSS: Bundled and Minified via `npm run build` (uses `esbuild` & `clean-css`).
+    - JS: Bundled and Minified via `npm run build` (uses `esbuild`).
+    - CSS: Raw `css/style.css`.
 - **Favicon**: Generic fallback or custom if provided.
 - **SEO**:
     - Title/Meta tags update dynamically on route change.
@@ -62,9 +63,9 @@
     - `scripts/build-content.js`: Scans `assets/images` and `data/videos.md` to inject content into `js/views.js`.
     - `scripts/generate-static.js`: Generates SEO-friendly static `.html` files in root.
     - `esbuild`: Minifies `js/main.js` -> `js/bundle.min.js`.
-    - `clean-css`: Minifies `css/style.css` -> `css/style.min.css`.
+
     - **CI/CD**: `build-static-site.yml` runs `npm run build` and commits changes to ensure the deployed site is always up-to-date with raw data.
-- **CSS**: `css/style.css` (Source) -> `css/style.min.css` (Production). Uses CSS Grid/Flexbox.
+- **CSS**: `css/style.css` (Source). Uses CSS Grid/Flexbox.
 - **JS**: `js/router.js` (Routing), `js/views.js` (Content Templates), `js/main.js` (Entry).
 - **Data**:
     - Videos: Managed in `data/videos.md` (Markdown Table with Date, Description, and Youtube Link. Title is auto-fetched).

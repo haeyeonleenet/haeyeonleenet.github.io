@@ -37,7 +37,7 @@
 ## Phase 7: Final Polish (Images, SEO, Minification)
 - [x] [T022] Place real images in `js/views.js` based on composition
 - [x] [T023] Generate static HTML files (`about.html`, `media.html`, etc.) for SEO
-- [x] [T024] specific minification of JS and CSS files (Bundling with esbuild)
+- [x] [T024] specific minification of JS files (Bundling with esbuild)
 
 ## Phase 8: Dynamic Media Content (Build System)
 - [x] [T025] Create `data/videos.md` and define format

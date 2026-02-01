@@ -16,10 +16,7 @@ try {
     execSync(`npx esbuild "${JS_ENTRY}" --bundle --minify --outfile="${JS_OUT}"`, { stdio: 'inherit', cwd: ROOT_DIR });
     console.log(`JS bundled to ${JS_OUT}`);
 
-    // 2. Minify CSS
-    console.log('Minifying CSS...');
-    execSync(`npx --yes --package clean-css-cli cleancss -o "${CSS_OUT}" "${CSS_ENTRY}"`, { stdio: 'inherit', cwd: ROOT_DIR });
-    console.log(`CSS minified to ${CSS_OUT}`);
+
 
     console.log('Assets build complete.');
 } catch (error) {
