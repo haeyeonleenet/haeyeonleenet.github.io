@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node scripts/minify-assets.js"
+    "build": "node scripts/minify-assets.js && node scripts/generate-static.js"
   },
   "keywords": [],
   "author": "",
