@@ -1,7 +1,3 @@
 node_modules
 .DS_Store
 js/bundle.min.js
-index.html
-about/
-contact/
-media/

@@ -183,7 +183,7 @@ async function build() {
     // 2. Read Templates
     const tplIndex = fs.readFileSync(path.join(SRC_DIR, 'index.html'), 'utf8');
     const tplAbout = fs.readFileSync(path.join(SRC_DIR, 'about.html'), 'utf8');
-    const tplMedia = fs.readFileSync(path.join(SRC_DIR, 'media.html'), 'utf8');
+    const tplMedia = fs.readFileSync(path.join(SRC_DIR, 'media/index.html'), 'utf8');
     const tplContact = fs.readFileSync(path.join(SRC_DIR, 'contact.html'), 'utf8');
 
     // 3. Generate pages
