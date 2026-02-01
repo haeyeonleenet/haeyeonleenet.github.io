@@ -1,145 +1,246 @@
 const fs = require('fs');
 const path = require('path');
+const https = require('https');
 
-// Extract content from views.js strings (simplified regex approach since we can't import ES modules easily in CommonJS script without setup)
-// Actually, we can read views.js file content and extract return values via regex to avoid module issues in a simple script.
+// --- CONFIG ---
+const ROOT_DIR = path.resolve(__dirname, '..');
+const SRC_DIR = path.join(ROOT_DIR, 'src');
+const ASSETS_DIR = path.join(ROOT_DIR, 'assets');
 
-const viewsPath = path.join(__dirname, '../src/js/views.js');
-const viewsContent = fs.readFileSync(viewsPath, 'utf8');
+const IMAGES_DIR = path.join(ASSETS_DIR, 'images');
+const VIDEOS_FILE = path.join(ASSETS_DIR, 'videos/videos.md');
+const RESUME_FILE = path.join(ASSETS_DIR, 'resume/haeyeon.lee.md');
 
-const extractView = (name) => {
-    // Regex matches: export const name = (...) => `...`;
-    // We capture the content inside the backticks.
-    // Updated to support arguments in function signature e.g. (activeTab = 'photos')
-    // Updated to stop at the closing backtick, ignoring any chained methods like .replace()
-    const regex = new RegExp(`export const ${name} = \\(.*?\\) => \`([\\s\\S]*?)\``);
-    const match = viewsContent.match(regex);
-    let content = match ? match[1] : '';
-    // Robustness fix: If regex overshot and captured the closing backtick (and subsequent code),
-    // truncate at the first backtick.
-    if (content.includes('`')) {
-        content = content.split('`')[0];
-    }
-    return content;
-};
+// --- HELPERS ---
 
-// We need to support passing arguments to the template for mediaView
-// So we extract the function body string, but we also need to know how to "render" it with args if it was a real function.
-// Since we are doing regex extraction of the template string, we are bypassing the function execution.
-// BUT, my previous build-content.js change actually injects the logic INTO the template string using .replace().
-// So the extracted string ALREADY contains the logic to handle activeTab if I extracted the whole thing.
-// However, extractView above only captures content INSIDE the backticks of the first template literal. 
-// My build-content.js change was: export const mediaView = (activeTab = 'photos') => `...`.replace(...)
-// So the regex above will capture the `...` inside backticks, but MISS the .replace(...) chain at the end.
-// This means the static generation will get the RAW template without the active class logic applied.
-
-// Strategy: For static generation, we might want to just manually replace the active classes in the raw template 
-// based on what page we are generating, similarly to how the build-script does it, 
-// OR we can rely on the fact that we are generating distinct files.
-
-const homeContent = extractView('homeView');
-const aboutContent = extractView('aboutView');
-const mediaRawContent = extractView('mediaView'); // This gives us the raw HTML inside backticks
-
-// Helper to apply active state to media content for static generation
-const processMediaContent = (content, activeTab) => {
-    const photosActive = activeTab === 'photos' ? 'active' : '';
-    const videoActive = activeTab === 'video' ? 'active' : '';
-    const photosDisplay = activeTab === 'photos' ? 'block' : 'none';
-    const videoDisplay = activeTab === 'video' ? 'block' : 'none';
-
-    return content
-        .replace(/id="photos" class="tab-pane.*?" style="display:.*?"/, `id="photos" class="tab-pane ${photosActive}" style="display:${photosDisplay};"`)
-        .replace(/id="video" class="tab-pane.*?" style="display:.*?"/, `id="video" class="tab-pane ${videoActive}" style="display:${videoDisplay};"`)
-        .replace(/href="\/media\/photos" class="tab-btn.*?"/, `href="/media/photos" class="tab-btn ${photosActive}"`)
-        .replace(/href="\/media\/videos" class="tab-btn.*?"/, `href="/media/videos" class="tab-btn ${videoActive}"`);
-};
-
-const template = (title, content, path) => `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${title}</title>
-    <meta name="description" content="Official website of Soprano Haeyeon Lee. Biography, and Media.">
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Lato:wght@300;400&display=swap" rel="stylesheet">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-    <header class="site-header">
-        <div class="header-container">
-            <a href="/" class="site-title" data-link>HAEYEON LEE</a>
-            <button class="mobile-nav-toggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <nav class="site-nav">
-                <a href="/about" data-link>About</a>
-                <a href="/media" data-link>Media</a>
-                <a href="/contact" data-link>Contact</a>
-            </nav>
-        </div>
-    </header>
-
-    <main id="app" class="site-content">
-        ${content}
-    </main>
-
-    <footer class="site-footer">
-        <div class="footer-content">
-            <p>&copy; <span id="year">2026</span> Haeyeon Lee. All Rights Reserved.</p>
-            <div class="social-links">
-                <a href="https://www.youtube.com/@Norae_haeyeon" target="_blank" aria-label="Youtube">Youtube</a>
-            </div>
-        </div>
-    </footer>
-
-    <script src="/js/bundle.min.js"></script>
-    <script>
-        // SEO Helper
-    </script>
-</body>
-</html>`;
-
-const pages = [
-    { file: 'about.html', title: 'About | Haeyeon Lee', content: aboutContent },
-
-
-    // Media Sub-pages
-    { file: 'media/photos/index.html', title: 'Media (Photos) | Haeyeon Lee', content: processMediaContent(mediaRawContent, 'photos') },
-    { file: 'media/videos/index.html', title: 'Media (Videos) | Haeyeon Lee', content: processMediaContent(mediaRawContent, 'video') },
-    // Redirect /media to photos (using same content as photos)
-    { file: 'media/index.html', title: 'Media | Haeyeon Lee', content: processMediaContent(mediaRawContent, 'photos') },
-];
-
-// Copy src/contact.html to root contact.html
-const contactSrc = path.join(__dirname, '../src/contact.html');
-const contactDest = path.join(__dirname, '../contact.html');
-if (fs.existsSync(contactSrc)) {
-    fs.copyFileSync(contactSrc, contactDest);
-    console.log('Copied contact.html from src/');
+// 1. Helper to clean Markdown bold syntax
+function cleanMarkdown(text) {
+    if (!text) return '';
+    return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 }
 
-pages.forEach(page => {
-    const filePath = path.join(__dirname, '../' + page.file);
-    const dir = path.dirname(filePath);
-    if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir, { recursive: true });
-    }
-    fs.writeFileSync(filePath, template(page.title, page.content));
-    console.log(`Generated ${page.file}`);
-});
+// 2. Fetch OEmbed Data (Async)
+function fetchOEmbed(url) {
+    return new Promise((resolve) => {
+        if (!url.includes('youtube.com') && !url.includes('youtu.be')) {
+            resolve(null);
+            return;
+        }
+        const oembedUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(url)}&format=json`;
 
-// Update index.html to have static home content? 
-// Current index.html has empty #app. Let's make it SEO friendly too.
-const indexContent = fs.readFileSync(path.join(__dirname, '../src/index.html'), 'utf8');
-const indexWithContent = indexContent.replace('<!-- Dynamic Content Injected Here -->', homeContent);
-fs.writeFileSync(path.join(__dirname, '../index.html'), indexWithContent);
-console.log('Updated index.html with static content');
+        https.get(oembedUrl, (res) => {
+            let data = '';
+            res.on('data', chunk => data += chunk);
+            res.on('end', () => {
+                try {
+                    const json = JSON.parse(data);
+                    resolve({
+                        title: json.title,
+                        thumbnail: json.thumbnail_url,
+                        html: json.html, // iframe
+                        url: url
+                    });
+                } catch (e) {
+                    console.error(`Failed to parse OEmbed for ${url}`);
+                    resolve(null);
+                }
+            });
+        }).on('error', (err) => {
+            console.error(`Error fetching OEmbed for ${url}: ${err.message}`);
+            resolve(null);
+        });
+    });
+}
+
+// --- DATA FETCHING ---
+
+// 1. Get Images
+function getImages() {
+    if (!fs.existsSync(IMAGES_DIR)) return [];
+    return fs.readdirSync(IMAGES_DIR)
+        .filter(file => /\.(jpg|jpeg|png|webp|gif)$/i.test(file))
+        .map(file => `/assets/images/${file}`);
+}
+
+// 2. Get Videos
+async function getVideos() {
+    if (!fs.existsSync(VIDEOS_FILE)) return [];
+
+    const content = fs.readFileSync(VIDEOS_FILE, 'utf8');
+    const lines = content.split('\n');
+    const videos = [];
+
+    for (const line of lines) {
+        const trimmed = line.trim();
+        if (trimmed.startsWith('|')) {
+            if (trimmed.includes('---')) continue;
+            if (trimmed.toLowerCase().includes('date') && trimmed.toLowerCase().includes('description')) continue;
+
+            const cols = trimmed.split('|').map(c => c.trim()).filter(c => c !== '');
+            if (cols.length >= 3) {
+                const [date, description, url] = cols;
+                const oembedData = await fetchOEmbed(url);
+
+                if (oembedData) {
+                    videos.push({
+                        ...oembedData,
+                        uploadDate: date,
+                        description: description
+                    });
+                }
+            }
+        }
+    }
+    return videos;
+}
+
+// 3. Get Resume (Bio & CV)
+function getResume() {
+    if (!fs.existsSync(RESUME_FILE)) return { bio: '', cv: [] };
+
+    const content = fs.readFileSync(RESUME_FILE, 'utf8');
+    const sections = content.split('**');
+
+    let bio = '';
+    let cv = [];
+
+    for (let i = 1; i < sections.length; i += 2) {
+        const title = sections[i].trim();
+        const body = sections[i + 1] || '';
+
+        if (title.toUpperCase() === 'BIO PAGE' || title.toUpperCase() === 'BIO') {
+            bio = body.trim().split(/\n{2,}/).map(p => `<p>${cleanMarkdown(p.trim())}</p>`).join('\n');
+        } else if (title.toUpperCase() === 'CV PAGE') {
+            continue;
+        } else {
+            const rawItems = body.trim().split(/\n{2,}/).filter(l => l.trim() !== '');
+            const formattedItems = rawItems.map(item => {
+                return `<li>${cleanMarkdown(item).replace(/\n/g, '<br>')}</li>`;
+            });
+
+            if (formattedItems.length > 0) {
+                cv.push({
+                    title: title,
+                    items: formattedItems
+                });
+            }
+        }
+    }
+    return { bio, cv };
+}
+
+// --- HTML GENERATION ---
+
+function generateCVHTML(cvData) {
+    return cvData.map(section => `
+        <div class="cv-section">
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;">${section.title}</h3>
+            <ul style="margin-bottom: 2rem; line-height: 1.6;">
+                ${section.items.join('\n')}
+            </ul>
+        </div>
+    `).join('\n');
+}
+
+function generatePhotosHTML(images) {
+    return `
+        <div class="media-grid">
+            ${images.map(img => `<img src="${img}" alt="Gallery Image" loading="lazy">`).join('\n')}
+        </div>
+    `;
+}
+
+function generateVideosHTML(videos) {
+    return `
+        <div class="video-grid">
+            ${videos.map(v => `
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        ${v.html}
+                    </div>
+                    <div class="video-info">
+                        <h3>${v.title}</h3>
+                        <p class="date">${v.uploadDate}</p>
+                        <p class="desc">${v.description}</p>
+                    </div>
+                </div>
+            `).join('\n')}
+        </div>
+    `;
+}
+
+// --- MAIN BUILD ---
+
+async function build() {
+    console.log('Starting SSG Build...');
+
+    // 1. Fetch Data
+    const images = getImages();
+    const videos = await getVideos();
+    const resume = getResume();
+    console.log(`Loaded: ${images.length} images, ${videos.length} videos, Resume parsed.`);
+
+    // 2. Read Templates
+    const tplIndex = fs.readFileSync(path.join(SRC_DIR, 'index.html'), 'utf8');
+    const tplAbout = fs.readFileSync(path.join(SRC_DIR, 'about.html'), 'utf8');
+    const tplMedia = fs.readFileSync(path.join(SRC_DIR, 'media.html'), 'utf8');
+    const tplContact = fs.readFileSync(path.join(SRC_DIR, 'contact.html'), 'utf8');
+
+    // 3. Generate pages
+
+    // A. Index (Home)
+    const indexHTML = tplIndex.replace('<!-- DYNAMIC_BODY_CLASS -->', 'home-page');
+    fs.writeFileSync(path.join(ROOT_DIR, 'index.html'), indexHTML);
+    console.log('Generated index.html');
+
+    // B. About -> about/index.html
+    const aboutDir = path.join(ROOT_DIR, 'about');
+    if (!fs.existsSync(aboutDir)) fs.mkdirSync(aboutDir);
+
+    const aboutHTML = tplAbout
+        .replace('<!-- DYNAMIC_BIO -->', resume.bio)
+        .replace('<!-- DYNAMIC_CV -->', generateCVHTML(resume.cv));
+    fs.writeFileSync(path.join(aboutDir, 'index.html'), aboutHTML);
+    console.log('Generated about/index.html');
+
+    // C. Contact -> contact/index.html
+    const contactDir = path.join(ROOT_DIR, 'contact');
+    if (!fs.existsSync(contactDir)) fs.mkdirSync(contactDir);
+
+    fs.writeFileSync(path.join(contactDir, 'index.html'), tplContact);
+    console.log('Generated contact/index.html');
+
+    // D. Media (Photos & Videos)
+    const mediaDir = path.join(ROOT_DIR, 'media');
+    const photosDir = path.join(mediaDir, 'photos');
+    const videosDir = path.join(mediaDir, 'videos');
+
+    if (!fs.existsSync(mediaDir)) fs.mkdirSync(mediaDir);
+    if (!fs.existsSync(photosDir)) fs.mkdirSync(photosDir);
+    if (!fs.existsSync(videosDir)) fs.mkdirSync(videosDir);
+
+    // D-1. Photos Page
+    const photosHTML = tplMedia
+        .replace('<!-- ACTIVE_PHOTOS -->', 'active')
+        .replace('<!-- ACTIVE_VIDEOS -->', '')
+        .replace('<!-- DYNAMIC_MEDIA_CONTENT -->', generatePhotosHTML(images));
+    fs.writeFileSync(path.join(photosDir, 'index.html'), photosHTML);
+    // Also redirect /media/index.html to photos usually, or just duplicate content
+    fs.writeFileSync(path.join(mediaDir, 'index.html'), photosHTML);
+    console.log('Generated media/photos/index.html');
+
+    // D-2. Videos Page
+    const videosHTML = tplMedia
+        .replace('<!-- ACTIVE_PHOTOS -->', '')
+        .replace('<!-- ACTIVE_VIDEOS -->', 'active')
+        .replace('<!-- DYNAMIC_MEDIA_CONTENT -->', generateVideosHTML(videos));
+    fs.writeFileSync(path.join(videosDir, 'index.html'), videosHTML);
+    console.log('Generated media/videos/index.html');
+
+    console.log('SSG Build Complete.');
+}
+
+build().catch(err => {
+    console.error('Build failed:', err);
+    process.exit(1);
+});
