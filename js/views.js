@@ -243,7 +243,7 @@ export const contactView = () => `
     <section class="content-section fade-in">
         <h2>Contact</h2>
         <div class="contact-info">
-            <p>Email: <a href="mailto:info@haeyeonlee.com">info@haeyeonlee.com</a></p>
+            <p>Email: <a href="mailto:sop.haeyeon.lee@gmail.com">sop.haeyeon.lee(at)gmail.com</a></p>
         </div>
     </section>
 `;

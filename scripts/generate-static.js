@@ -39,7 +39,6 @@ const extractView = (name) => {
 
 const homeContent = extractView('homeView');
 const aboutContent = extractView('aboutView');
-const contactContent = extractView('contactView');
 const mediaRawContent = extractView('mediaView'); // This gives us the raw HTML inside backticks
 
 // Helper to apply active state to media content for static generation
@@ -111,7 +110,7 @@ const template = (title, content, path) => `<!DOCTYPE html>
 
 const pages = [
     { file: 'about.html', title: 'About | Haeyeon Lee', content: aboutContent },
-    { file: 'contact.html', title: 'Contact | Haeyeon Lee', content: contactContent },
+
 
     // Media Sub-pages
     { file: 'media/photos/index.html', title: 'Media (Photos) | Haeyeon Lee', content: processMediaContent(mediaRawContent, 'photos') },
