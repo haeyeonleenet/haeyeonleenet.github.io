@@ -1,9 +1,5 @@
 export const homeView = () => `
     <section class="hero-section fade-in" style="background-image: url('/assets/images/main.jpeg');">
-        <div class="hero-content">
-            <h1>Haeyeon Lee</h1>
-            <p class="subtitle">SOPRANO</p>
-        </div>
     </section>
 `;
 

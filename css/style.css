@@ -184,7 +184,7 @@ img {
     background-color: #F8F8F8;
     /* Placeholder for image */
     background-size: cover;
-    background-position: center;
+    background-position: top center;
     position: relative;
     padding: 0 var(--spacing-container);
 }
