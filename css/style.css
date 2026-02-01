@@ -137,6 +137,7 @@ body.home-page .site-title {
     cursor: pointer;
     flex-direction: column;
     gap: 5px;
+    margin-left: auto;
 }
 
 .mobile-nav-toggle span {
