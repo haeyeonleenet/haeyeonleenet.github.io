@@ -9,7 +9,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Portfoilo website for Haeyeon Lee",
   "devDependencies": {
     "esbuild": "^0.27.2"
   }
