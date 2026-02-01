@@ -27,9 +27,10 @@
 ### Phase 2: User Story 1 (Home & Shell)
 **Goal**: Implement the global layout and the first visual impression.
 - [ ] **Navigation**: Fixed/Sticky top bar with specific links (Home, Bio, Media, Contact).
-- [ ] **Hero Section**: Full-screen portrait, centered Name and Title ("SOPRANO").
+- [ ] **Hero Section**: Full-screen portrait, no text overlay.
 - [ ] **Footer**: Minimalist copyright and social links.
 - [ ] **Responsiveness**: Mobile "Burger" menu implementation.
+- [ ] **CSS**: Hero background image sticks to top.
 
 ### Phase 3: User Story 2 (About)
 **Goal**: Implement the Biography section.
