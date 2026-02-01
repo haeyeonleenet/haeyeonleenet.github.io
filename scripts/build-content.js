@@ -116,7 +116,7 @@ function generateMediaView(images, videos, activeTab = 'photos') {
         <h2>Media</h2>
         <div class="media-tabs">
             <a href="/media/photos" class="tab-btn ${photosActive}" data-link>Photos</a>
-            <a href="/media/videos" class="tab-btn ${videoActive}" data-link>Video</a>
+            <a href="/media/videos" class="tab-btn ${videoActive}" data-link>Videos</a>
         </div>
         <div class="media-content">
             <div id="photos" class="tab-pane ${photosActive}" style="display:${photosDisplay};">
