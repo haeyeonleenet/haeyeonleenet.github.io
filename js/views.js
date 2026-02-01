@@ -1,5 +1,5 @@
 export const homeView = () => `
-    <section class="hero-section fade-in" style="background-image: url('/assets/images/EYR01028.JPG');">
+    <section class="hero-section fade-in" style="background-image: url('/assets/images/main.jpeg');">
         <div class="hero-content">
             <h1>Haeyeon Lee</h1>
             <p class="subtitle">SOPRANO</p>
@@ -30,7 +30,7 @@ export const aboutView = () => `
                 </div>
                 <!-- Photo lives INSIDE the bio tab -->
                 <div class="image-column">
-                    <img src="/assets/images/EYR00610.JPG" alt="Haeyeon Lee Portrait" class="about-image">
+                    <img src="/assets/images/about.jpeg" alt="Haeyeon Lee Portrait" class="about-image">
                 </div>
             </div>
         </div>

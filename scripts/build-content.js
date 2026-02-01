@@ -234,7 +234,7 @@ function generateAboutHTML(resumeData) {
         </div>
     `).join('\n');
 
-    const portraitImg = '/assets/images/EYR00610.JPG';
+    const portraitImg = '/assets/images/about.jpeg';
 
     return `
     <section class="content-section fade-in">
@@ -280,6 +280,7 @@ async function main() {
     console.log(`Processed ${videos.length} videos.`);
 
     // const schedule = getSchedule();
+    const schedule = [];
     // console.log(`Found ${schedule.length} schedule events.`);
 
     const resume = getResume();
