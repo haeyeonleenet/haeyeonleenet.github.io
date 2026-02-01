@@ -58,16 +58,22 @@
     - **Automation**: GitHub Actions workflow (`.github/workflows/build-static-site.yml`) automatically builds and commits the latest static content and minified assets on every push to `main`.
 
 ## 4. Implementation Details
-- **Build System**:
-    - **Command**: `npm run build` (Chains content build, minification, and static generation).
-    - `scripts/build-content.js`: Scans `assets/images` and `assets/videos/videos.md` to inject content into `js/views.js`.
-    - `scripts/generate-static.js`: Generates SEO-friendly static `.html` files in root.
-    - `esbuild`: Minifies `js/main.js` -> `js/bundle.min.js`.
+- **Build System (SSG)**:
+    - **Command**: `npm run build` (Chains minification and static generation).
+    - `scripts/generate-static.js`: The core SSG script.
+        - Inputs: `src/*.html` (Templates) + `assets/` (Data/Content).
+        - Outputs: Root HTML files (`index.html`, `about.html`, `media/photos/index.html`, etc.).
+    - `esbuild`: Minifies `src/js/main.js` -> `js/bundle.min.js`.
 
-    - **CI/CD**: `build-static-site.yml` runs `npm run build` and commits changes to ensure the deployed site is always up-to-date with raw data.
+    - **CI/CD**: `build-static-site.yml` runs `npm run build` and commits changes.
+- **Source Structure**:
+    - `src/`: Contains raw HTML templates (`about.html`, `media.html`, etc.) and JS.
+    - `assets/`: Contains content (`resume/`, `videos/`, `images/`).
 - **CSS**: `css/style.css` (Source). Uses CSS Grid/Flexbox.
-- **JS**: `js/router.js` (Routing), `js/views.js` (Content Templates), `js/main.js` (Entry).
+- **JS**: `src/js/main.js` (Entry).
 - **Data**:
+    - Videos: `assets/videos/videos.md`.
+    - Resume: `assets/resume/*.md`.
     - Videos: Managed in `assets/videos/videos.md` (Markdown Table with Date, Description, and Youtube Link. Title is auto-fetched).
     - Photos: Managed by file existence in `assets/images`.
     - Resume: `assets/resume/*.md` (Source of Truth for Bio, Education, Experience).
