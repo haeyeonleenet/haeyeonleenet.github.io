@@ -37,12 +37,9 @@
         - **Format**: Responsive Video Cards (16:9 <iframe> embed).
         - **Source**: YouTube URLs via OEmbed.
 
-4.  **Schedule (`/schedule`)**
-    - **List**: Upcoming performances.
-    - **Format**: Date | Event Name | Location | Role.
 
-5.  **Contact (`/contact`)**
-    - **Details**: Email address, Management info, Social links.
+4.  **Contact (`/contact`)**
+    - **Details**: Email address, Management info, YouTube Channel.
 
 ## 3. Technical Requirements
 - **Routing**: Hybrid SPA/MPA.
@@ -72,12 +69,10 @@
 - **Data**:
     - Videos: Managed in `data/videos.md` (Markdown Table with Date, Description, and Youtube Link. Title is auto-fetched).
     - Photos: Managed by file existence in `assets/images`.
-    - Schedule: Managed in `data/schedule.md` (Markdown Table).
     - Resume: `resources/resume/*.md` (Source of Truth for Bio, Education, Experience).
 
 ## 5. Content Strategy
 - **Dynamic Loading**: 
     - Photos are not hardcoded; they are scraped from the directory during build.
     - Videos are embedded as iframes. Title is OEmbed-fetched. Date & Description are manual from `data/videos.md`.
-    - Schedule is parsed from a Markdown table in `data/schedule.md` and rendered into HTML.
 

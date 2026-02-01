@@ -26,7 +26,7 @@
 
 ### Phase 2: User Story 1 (Home & Shell)
 **Goal**: Implement the global layout and the first visual impression.
-- [ ] **Navigation**: Fixed/Sticky top bar with specific links (Home, Bio, Media, Schedule, Contact).
+- [ ] **Navigation**: Fixed/Sticky top bar with specific links (Home, Bio, Media, Contact).
 - [ ] **Hero Section**: Full-screen portrait, centered Name and Title ("SOPRANO").
 - [ ] **Footer**: Minimalist copyright and social links.
 - [ ] **Responsiveness**: Mobile "Burger" menu implementation.
@@ -42,9 +42,8 @@
 - [ ] **Video**: Embedded players (YouTube/Vimeo) with clean styling.
 - [ ] **Routing**: Support sub-routes if needed or tabbed interface (`/media/photos`, `/media/video`).
 
-### Phase 5: User Story 4 & 5 (Schedule & Contact)
+### Phase 5: User Story 5 (Contact)
 **Goal**: specific functional pages.
-- [ ] **Schedule**: Clean list view with Date, Title, Location.
 - [ ] **Contact**: Simple display of Management info and Email/Social links.
 
 ### Phase 6: Polish & Verification

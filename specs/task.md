@@ -26,9 +26,7 @@
 - [x] [T014] [US3] Implement Masonry/Grid styles for photos
 - [x] [T015] [US3] Add video embed styles
 
-## Phase 5: User Story 4 & 5 (Schedule & Contact)
-- [x] [T016] [US4] Create Schedule View structure
-- [x] [T017] [US4] Implement Schedule list styling
+## Phase 5: User Story 5 (Contact)
 - [x] [T018] [US5] Create Contact View structure and styles
 
 ## Phase 6: Polish & Verification
@@ -47,8 +45,4 @@
 - [x] [T027] Update `js/views.js` via the build script
 - [x] [T028] Verify dynamic content loading locally
 
-## Phase 9: Dynamic Schedule (Build System)
-- [ ] [T029] Create `data/schedule.md` and define format (Date | Event | Location)
-- [ ] [T030] Update `scripts/build-content.js` to parse schedule markdown
-- [ ] [T031] Inject schedule list into `js/views.js`
-- [ ] [T032] Verify schedule updates
+
