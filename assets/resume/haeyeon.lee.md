@@ -107,7 +107,6 @@ Seoul, Korea | 2014
 
 
 **Contacts**
-Email: sop.haeyeon.lee@gmail.com
-Phone: +82-10-3697-1398
+Email: sop.haeyeon.lee(at)gmail.com
 Seoul, Republic of Korea
 
