@@ -59,6 +59,7 @@ function getImages() {
     if (!fs.existsSync(IMAGES_DIR)) return [];
     return fs.readdirSync(IMAGES_DIR)
         .filter(file => /\.(jpg|jpeg|png|webp|gif)$/i.test(file))
+        .filter(file => !['main.jpeg', 'about.jpeg'].includes(file))
         .map(file => `/assets/images/${file}`);
 }
 
