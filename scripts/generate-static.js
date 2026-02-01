@@ -39,7 +39,6 @@ const extractView = (name) => {
 
 const homeContent = extractView('homeView');
 const aboutContent = extractView('aboutView');
-const scheduleContent = extractView('scheduleView');
 const contactContent = extractView('contactView');
 const mediaRawContent = extractView('mediaView'); // This gives us the raw HTML inside backticks
 
@@ -63,7 +62,7 @@ const template = (title, content, path) => `<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${title}</title>
-    <meta name="description" content="Official website of Soprano Haeyeon Lee. Biography, Schedule, and Media.">
+    <meta name="description" content="Official website of Soprano Haeyeon Lee. Biography, and Media.">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -85,7 +84,6 @@ const template = (title, content, path) => `<!DOCTYPE html>
             <nav class="site-nav">
                 <a href="/about" data-link>About</a>
                 <a href="/media" data-link>Media</a>
-                <a href="/schedule" data-link>Schedule</a>
                 <a href="/contact" data-link>Contact</a>
             </nav>
         </div>
@@ -99,8 +97,7 @@ const template = (title, content, path) => `<!DOCTYPE html>
         <div class="footer-content">
             <p>&copy; <span id="year">2026</span> Haeyeon Lee. All Rights Reserved.</p>
             <div class="social-links">
-                <a href="#" target="_blank" aria-label="Instagram">Instagram</a>
-                <a href="#" target="_blank" aria-label="SoundCloud">SoundCloud</a>
+                <a href="https://www.youtube.com/@Norae_haeyeon" target="_blank" aria-label="Youtube">Youtube</a>
             </div>
         </div>
     </footer>
@@ -114,7 +111,6 @@ const template = (title, content, path) => `<!DOCTYPE html>
 
 const pages = [
     { file: 'about.html', title: 'About | Haeyeon Lee', content: aboutContent },
-    { file: 'schedule.html', title: 'Schedule | Haeyeon Lee', content: scheduleContent },
     { file: 'contact.html', title: 'Contact | Haeyeon Lee', content: contactContent },
 
     // Media Sub-pages

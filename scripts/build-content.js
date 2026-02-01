@@ -4,7 +4,7 @@ const https = require('https');
 
 const IMAGES_DIR = path.join(__dirname, '../assets/images');
 const VIDEOS_FILE = path.join(__dirname, '../data/videos.md');
-const SCHEDULE_FILE = path.join(__dirname, '../data/schedule.md');
+// const SCHEDULE_FILE = path.join(__dirname, '../data/schedule.md');
 const RESUME_FILE = path.join(__dirname, '../resources/resume/haeyeon.lee.md');
 const VIEWS_FILE = path.join(__dirname, '../js/views.js');
 
@@ -279,8 +279,8 @@ async function main() {
     const videos = await getVideos();
     console.log(`Processed ${videos.length} videos.`);
 
-    const schedule = getSchedule();
-    console.log(`Found ${schedule.length} schedule events.`);
+    // const schedule = getSchedule();
+    // console.log(`Found ${schedule.length} schedule events.`);
 
     const resume = getResume();
     console.log(`Parsed resume sections: Bio length ${resume.bio.length}, CV sections ${resume.cv.length}`);
