@@ -1,4 +1,4 @@
-const { execSync } = require('child_process');
+const { buildSync } = require('esbuild');
 const fs = require('fs');
 const path = require('path');
 
@@ -20,14 +20,12 @@ try {
         throw new Error(`JS Entry file not found: ${JS_ENTRY}`);
     }
 
-    const esbuildBin = path.join(ROOT_DIR, 'node_modules/.bin/esbuild');
-    if (!fs.existsSync(esbuildBin)) {
-        // Fallback to npx if binary not found (local dev vs CI?)
-        console.warn('Local esbuild binary not found, falling back to npx');
-        execSync(`npx esbuild "${JS_ENTRY}" --bundle --minify --outfile="${JS_OUT}"`, { stdio: 'inherit', cwd: ROOT_DIR });
-    } else {
-        execSync(`"${esbuildBin}" "${JS_ENTRY}" --bundle --minify --outfile="${JS_OUT}"`, { stdio: 'inherit', cwd: ROOT_DIR });
-    }
+    buildSync({
+        entryPoints: [JS_ENTRY],
+        bundle: true,
+        minify: true,
+        outfile: JS_OUT,
+    });
     console.log(`JS bundled to ${JS_OUT}`);
 
     console.log('Assets build complete.');
